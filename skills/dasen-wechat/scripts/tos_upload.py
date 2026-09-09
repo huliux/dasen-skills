@@ -27,6 +27,7 @@ from typing import Any
 CONTENT_SCRIPTS = Path(__file__).resolve().parents[2] / "dasen-content" / "scripts"
 sys.path.insert(0, str(CONTENT_SCRIPTS))
 
+from content_paths import control_reference, select_content_root
 from project_config import assets_config, default_project_reference, load_project_reference  # noqa: E402
 
 
@@ -248,14 +249,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("object_prefix")
     parser.add_argument("--project-root", type=Path, default=Path.cwd())
     parser.add_argument("--project-file", help="Project-relative config; auto-detected when omitted")
+    parser.add_argument("--content-root", help="Workspace-relative content directory")
     parser.add_argument("--execute", action="store_true", help="Read credentials and perform network writes")
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    project_root = args.project_root.expanduser().resolve()
-    project_ref = args.project_file or default_project_reference(project_root)
+    workspace = args.project_root.expanduser().resolve()
+    project_root = select_content_root(workspace, args.content_root, args.project_file)
+    project_ref = control_reference(workspace, project_root, args.project_file) or default_project_reference(project_root)
     if not project_ref:
         print("error: TOS upload requires a project configuration", file=sys.stderr)
         return 2

@@ -46,3 +46,5 @@
 欢迎在项目仓库提交中文或英文 Issue 与 PR。贡献者可从源码中的 `CONTRIBUTING.md` 开始。
 
 采用 [MIT 许可证](LICENSE)；来源与外部组件见 [ORIGIN](ORIGIN.md) 和 [THIRD_PARTY](THIRD_PARTY.md)。
+
+新稿默认按内容包保存：正文与来源在 `writing/日期/主题/`，计划和回执在包内 `evidence/`，图片在内容根的 `assets/`。已有内容工作区保持原位；首次在源码仓创作默认放进 `content/`，也可指定内容根。旧包继续兼容，不自动搬迁。普通写作不要求 HTML 渲染或图片检查；排版可选三套白底简洁模板。研究默认查阅相关 Wiki，新材料入库按整批确认。

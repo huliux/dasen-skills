@@ -29,6 +29,7 @@ from project_config import (
     load_project_reference,
     visual_config,
 )
+from content_paths import control_reference, select_content_root
 from style_profiles import resolve_style
 from visual_styles import METHODS as VISUAL_METHODS
 from visual_styles import resolve_visual_style
@@ -83,7 +84,8 @@ def parser() -> argparse.ArgumentParser:
     p.add_argument("--title-forbid", action="append", default=[])
     p.add_argument("--source-minimum", type=int)
     p.add_argument("--primary-required", action=argparse.BooleanOptionalAction, default=None)
-    p.add_argument("--root", default="writing")
+    p.add_argument("--content-root", help="Workspace-relative content directory; existing content or source-workspace default")
+    p.add_argument("--root", default="writing", help="Article directory relative to the selected content root")
     return p
 
 
@@ -139,8 +141,11 @@ def freeze_cover_reference(value: str | None, project_root: Path) -> dict | None
 
 def main() -> int:
     args = parser().parse_args()
-    project_root = Path.cwd().resolve()
+    workspace = Path.cwd().resolve()
     try:
+        project_root = select_content_root(workspace, args.content_root, args.project_file)
+        args.project_file = control_reference(workspace, project_root, args.project_file)
+        args.series_file = control_reference(workspace, project_root, args.series_file)
         date_str, slug = parse_id(args.id)
         project_ref = args.project_file or default_project_reference(project_root)
         project_cfg = {}
@@ -300,7 +305,9 @@ def main() -> int:
         "platform": args.platform,
         "project": project_cfg.get("project"),
         "project_file": project_ref,
-        "workspace_root": os.path.relpath(project_root, bundle),
+        "workspace_root": os.path.relpath(workspace, bundle),
+        "content_root": project_root.relative_to(workspace).as_posix(),
+        "layout_version": 2,
         "series": series_name,
         "series_file": args.series_file,
         "profile": profile,
@@ -406,7 +413,7 @@ def main() -> int:
 
     try:
         bundle.mkdir(parents=True)
-        (bundle / "assets").mkdir()
+        (bundle / "evidence").mkdir()
         (bundle / "brief.yaml").write_text(
             yaml.safe_dump(brief, allow_unicode=True, sort_keys=False), encoding="utf-8"
         )

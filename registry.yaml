@@ -10,7 +10,7 @@ skills:
     ownership: owned
     lifecycle: stable
     visibility: public-candidate
-    version: 4.3.3
+    version: 5.0.0
     packs:
     - content-core
     - content-wechat
@@ -26,7 +26,7 @@ skills:
     ownership: owned
     lifecycle: stable
     visibility: public-candidate
-    version: 3.0.0
+    version: 4.0.0
     packs:
     - content-core
     - content-wechat
@@ -43,7 +43,7 @@ skills:
     ownership: owned
     lifecycle: stable
     visibility: public-candidate
-    version: 3.0.0
+    version: 3.0.1
     packs:
     - content-core
     - content-wechat
@@ -56,7 +56,7 @@ skills:
     ownership: owned
     lifecycle: stable
     visibility: public-candidate
-    version: 2.0.0
+    version: 3.0.0
     packs:
     - content-wechat
     - knowledge
@@ -67,7 +67,7 @@ skills:
     ownership: owned
     lifecycle: stable
     visibility: public-candidate
-    version: 4.0.0
+    version: 5.0.0
     packs:
     - content-wechat
     depends_on:
@@ -81,7 +81,7 @@ skills:
     ownership: owned
     lifecycle: stable
     visibility: public-candidate
-    version: 6.0.0
+    version: 7.0.0
     packs:
     - content-wechat
     depends_on:

@@ -1,4 +1,6 @@
 schema_version: 3
+layout_version: 2
+content_root: .
 id: YYYY-MM-DD-topic-slug
 configuration: standalone
 brand:

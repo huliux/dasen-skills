@@ -1,0 +1,32 @@
+schema_version: 1
+id: dasen-document
+description: 简洁技术：白底、紧凑标题与清晰表格，适合教程和技术说明。
+legacy_aliases: []
+styles:
+  root: font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;font-size:16px;line-height:1.7;color:#252525;background-color:#ffffff;letter-spacing:0;word-break:break-word;
+  p: margin:0.9em 0;line-height:1.7;
+  h1: margin:1.2em 0 0.6em;font-size:1.7em;line-height:1.25;font-weight:650;color:#222222;
+  h2: 'margin:1.6em 0 0.55em;padding:0 0 0.35em;font-size:21px;line-height:1.4;font-weight:650;color:#252525;border-bottom:1px solid #e4e4e4;'
+  h3: margin:1.3em 0 0.45em;font-size:18px;line-height:1.45;font-weight:650;color:#333333;
+  h4: margin:1.1em 0 0.35em;font-size:1.1em;line-height:1.4;font-weight:650;color:#222222;
+  h5: margin:1em 0 0.35em;font-size:1em;line-height:1.4;font-weight:650;color:#222222;
+  h6: margin:1em 0 0.35em;font-size:1em;line-height:1.4;font-weight:650;color:#595959;
+  strong: font-weight:600;color:#222222;
+  em: font-style:italic;
+  a: 'color:#0069c2;text-decoration:none;border-bottom:1px solid #b8d8f0;word-break:break-all;'
+  img: display:block;max-width:100%;height:auto;margin:2em auto;border:0;border-radius:0;box-shadow:none;
+  ul: margin:0.8em 0;padding-left:1.4em;line-height:1.7;
+  ol: margin:0.8em 0;padding-left:1.4em;line-height:1.7;
+  li: margin:0.25em 0;line-height:1.7;
+  blockquote: 'margin:1em 0;padding:0.25em 0.9em;border-left:2px solid #b8b8b8;background-color:#ffffff;color:#5c5c5c;'
+  table: width:100%;max-width:100%;margin:1.4em auto;border-collapse:collapse;table-layout:fixed;font-size:14px;
+  th: 'padding:7px 8px;border:1px solid #d8d8d8;background-color:#ffffff;font-weight:650;line-height:1.5;text-align:left;vertical-align:top;word-break:break-word;'
+  td: 'padding:7px 8px;border:1px solid #d8d8d8;background-color:#ffffff;line-height:1.5;text-align:left;vertical-align:top;word-break:break-word;'
+  hr: 'height:0;margin:3em 0;border:0;border-top:1px solid #e0e0e0;'
+  code: font-family:SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;font-size:0.9em;background-color:#f3f4f6;color:#333333;border-radius:3px;padding:0.12em 0.3em;
+  pre: margin:1.5em 0;padding:1em;overflow-x:auto;background-color:#f7f7f8;color:#2f3337;line-height:1.65;white-space:pre;word-break:normal;
+  code_container: 'margin:1.2em 0;border:1px solid #e1e1e1;border-radius:3px;overflow:hidden;background-color:#f7f7f8;'
+  code_toolbar: display:none;
+  code_dot: display:none;
+  figure: margin:2em 0;text-align:center;
+  figcaption: margin-top:-1.2em;color:#888888;font-size:13px;line-height:1.5;text-align:center;

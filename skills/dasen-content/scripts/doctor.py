@@ -77,6 +77,7 @@ def find_skills_root(repo: Path) -> Path:
 def main() -> int:
     ap = argparse.ArgumentParser(description="Inspect dasen content pipeline capabilities")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--content-root", help="Workspace-relative content directory")
     ap.add_argument("--project-file", help="Current-workspace-relative project.md used for project-scoped capabilities")
     args = ap.parse_args()
     repo = find_repo()
@@ -125,12 +126,16 @@ def main() -> int:
         checks["projects"]["standalone"] = "ready"
 
     project: dict = {}
-    project_reference = args.project_file or ("project.md" if (repo / "project.md").is_file() else None)
+    from content_paths import control_reference, select_content_root
+    from project_config import default_project_reference
+    content_root = select_content_root(repo, args.content_root, args.project_file)
+    checks["content_root"] = str(content_root)
+    project_reference = control_reference(repo, content_root, args.project_file) or default_project_reference(content_root)
     if project_reference:
         try:
             from project_config import load_project_reference
 
-            _, project = load_project_reference(project_reference, repo)
+            _, project = load_project_reference(project_reference, content_root)
         except ValueError as exc:
             ap.error(str(exc))
     credential_script = skill_root / "dasen-wechat" / "scripts" / "wechat_credentials.py"

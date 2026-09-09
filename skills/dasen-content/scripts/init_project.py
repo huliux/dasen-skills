@@ -11,10 +11,12 @@ from urllib.parse import urlparse
 
 import yaml
 
+from content_paths import contained, select_content_root
 from project_config import default_channel_config, default_project_config
 
 def parser() -> argparse.ArgumentParser:
     command = argparse.ArgumentParser(description="Create a dasen content configuration")
+    command.add_argument("--content-root", help="Workspace-relative content directory")
     command.add_argument("--output", help="Override destination; project default is project.md")
     command.add_argument("--project", required=True, help="Stable lowercase project id")
     command.add_argument("--platform", action="append", default=[], help="Configured channel id; repeatable")
@@ -166,13 +168,17 @@ def main() -> int:
         if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", style_id):
             raise SystemExit(f"[error] {name} 必须是有效 Visual Style ID")
 
-    raw_destination = Path(args.output).expanduser() if args.output else Path("project.md")
     project_root = Path.cwd().resolve()
+    content_root = select_content_root(project_root, args.content_root, args.output)
+    raw_destination = Path(args.output).expanduser() if args.output else content_root.relative_to(project_root) / "project.md"
     if raw_destination.is_absolute():
         raise SystemExit("[error] --output 必须是当前工作区内相对路径")
     destination = (project_root / raw_destination).resolve()
     if not destination.is_relative_to(project_root):
         raise SystemExit("[error] --output 必须位于当前工作区内")
+    if not destination.is_relative_to(content_root):
+        raise SystemExit("[error] project configuration must be inside the selected content root")
+    contained(content_root, asset_root, "assets.root")
     if destination.exists():
         raise SystemExit(f"[error] 配置已存在，拒绝覆盖：{destination}")
 
@@ -198,6 +204,7 @@ def main() -> int:
     profiles = ({persona_id: {"name": persona_name, "contacts": persona_contacts}} if persona_id else {})
 
     config = default_project_config(args.project)
+    config["content_root"] = content_root.relative_to(project_root).as_posix()
     config["brand"] = {
         "name": brand_name,
         "aliases": list(dict.fromkeys(value.strip() for value in args.brand_alias if value.strip())),

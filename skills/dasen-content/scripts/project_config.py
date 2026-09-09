@@ -92,7 +92,8 @@ def load_project_reference(reference: str, project_root: Path) -> tuple[Path, di
 
 
 def default_project_reference(project_root: Path) -> str | None:
-    if (project_root / "project.md").is_file():
+    from content_paths import content_project_metadata
+    if content_project_metadata(project_root / "project.md"):
         return "project.md"
     return None
 

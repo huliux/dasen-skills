@@ -62,3 +62,11 @@ First preparation needs reachable download sources. Manual artifact import is a 
 Adopt methods only for a demonstrated improvement in topic selection, titles, or article quality. Compare against the existing workflow with the same source material, preserve failures, and assess concrete outputs. Added context or maintenance burden without benefit is a reason to discard a method.
 
 Methods with narrow benefits use explicit triggers, inputs, exclusions, and fallback conditions. One reader question organizes the article; compatible methods can support distinct tasks. Bounded comparisons and content acceptance are defined in spec, not automatically scheduled by this policy.
+
+## Owned content layout and reuse (2026-09-09)
+
+The owner confirmed one content root: existing dedicated content workspaces retain their root; a source workspace starts new content under content/ unless explicitly configured otherwise. Rules cover this suite's own artifacts, not unrelated user/tool directories. New article evidence uses evidence/, while media stays in the content-root assets/ tree; preserve historical bundles and receipts through explicit layout compatibility.
+
+Plain writing ends with prose, sources and writing/delivery evidence. Only requested visual or platform work creates Asset Check or renders HTML. Research reads relevant local Wiki evidence by default, preserves original source identity and freshness, then fills gaps. New reusable material is proposed as one batch for confirmation before ingestion; maintenance scans are outside content knowledge.
+
+Offer three white, simple native HTML themes, differentiated by reading density and document hierarchy. External themes inform design and require source/license review before any code reuse; no external renderer is introduced and project identity remains project-owned.

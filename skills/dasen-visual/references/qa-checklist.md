@@ -1,6 +1,6 @@
 # Asset checks
 
-Use the final assets/visual-plan.yaml after stable prose; provisional planning is not a final Asset Check.
+Use the final evidence/visual-plan.yaml after stable prose; provisional planning is not a final Asset Check.
 
 ## Every asset
 
@@ -16,7 +16,7 @@ Verify frozen body/cover Style ID/revision and separate layout/role/Adapter/prov
 
 ## Required cover
 
-Optional topic_label appears verbatim in title/final cover only when enabled; placement follows the chosen layout. Style/Adapter/provider/model match the resolved brief. Record layout, filled prompts, cover.yaml, source/final hashes, and applicable storage receipt. Binaries stay at frozen assets.root; package assets contains audit text. Final dimensions match the project; Chinese/English are correct and title/label readable as phone thumbnails. Respect layout structure without presenting a generated cover as a real screenshot/result. Image models guide visual generation; critical title/numbers/long text receive post-generation layout and verification.
+Optional topic_label appears verbatim in title/final cover only when enabled; placement follows the chosen layout. Style/Adapter/provider/model match the resolved brief. Record layout, filled prompts, cover.yaml, source/final hashes, and applicable storage receipt. Binaries stay at frozen assets.root; package evidence contains audit text. Final dimensions match the project; Chinese/English are correct and title/label readable as phone thumbnails. Respect layout structure without presenting a generated cover as a real screenshot/result. Image models guide visual generation; critical title/numbers/long text receive post-generation layout and verification.
 
 ## Article and handoff
 

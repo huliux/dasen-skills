@@ -16,12 +16,15 @@ writing/YYYY-MM-DD/<slug>/
 ├── sources.md
 ├── article.md
 ├── record.md
-└── assets/                 # visual-plan.yaml, prompts, manifests, JSON/TXT evidence
+├── evidence/               # visual-plan.yaml, prompts, manifests, JSON/TXT evidence
+└── exports/                # derived local platform output, created only when requested
 
-<brief.assets.root>/YYYY-MM-DD/<slug>/  # image binaries; workspace assets/ by default
+<brief.assets.root>/YYYY-MM-DD/<slug>/  # image binaries; content-root assets/ by default
 ```
 
-Brief is the article's control document: goals, temporary requirements, one writing Style, body/cover visual snapshots, and state. Sources owns supporting evidence/check times. Article owns current manuscript text; platform HTML/drafts are derived. Record is append-only stage checks, delivery/performance evidence, and human decisions. Package assets contains auditable text; frozen assets.root contains image binaries. Record remote URLs only after configured, actual upload. Create record sections only for stages that ran; do not require empty review/compatibility/publication files.
+New bundles use layout_version: 2; older briefs without that field use layout 1 and retain package assets/ in place. The shared path resolver selects the one evidence/delivery-state directory from this field; mismatched delivery state blocks execution. No automatic rename or historical receipt rewrite occurs. See [content paths](content-paths.md).
+
+Brief is the article's control document: goals, temporary requirements, one writing Style, body/cover visual snapshots, and state. Sources owns supporting evidence/check times. Article owns current manuscript text; platform HTML/drafts are derived. Record is append-only stage checks, delivery/performance evidence, and human decisions. Package evidence contains auditable text; frozen assets.root contains image binaries. Record remote URLs only after configured, actual upload. Create record sections only for stages that ran; do not require empty review/compatibility/publication files.
 
 ### 1.1 Defaults and production facts
 
@@ -41,7 +44,7 @@ Only conclusions that hold across multiple articles may be proposed for project/
 | brief.yaml | dasen-content; axes, overrides, state/blocker | No automatic promotion to long-term defaults |
 | sources.md | dasen-research; supports, locators, checks, uncertainty | No unsupported impression presented as a source |
 | article.md | dasen-writing; current text/frontmatter | Platform tools do not rewrite arguments or copy HTML back into prose |
-| Package assets/ | dasen-visual/tester; plan, prompts, text manifests/evidence | No image binaries or duplicate strategy/source catalog |
+| Package evidence/ | dasen-visual/tester; plan, prompts, text manifests/evidence | No image binaries or duplicate strategy/source catalog |
 | Frozen assets.root directory | dasen-visual/tester; screenshots/charts/covers | No Git-tracked binaries, control documents, or credentials |
 | record.md | Each stage appends its own results/receipts/corrections | No history overwrite or prefilled PASS |
 | WeChat drafts | dasen-wechat; derived article/assets | Not public publication or the manuscript authority |
@@ -69,7 +72,7 @@ Handoff uses actual files/receipts; a conversational claim of completion is insu
 
 ## 2. Configuration, axes, and selection
 
-Resolve explicit workspace-relative project reference → workspace project.md → standalone. Do not read @global, absolute, or outside-project configuration. Resolve relative asset paths from the content workspace root. Introduce project/brand/channels/authors/visual providers/storage/accounts only when needed. Configuration stores no secrets; credential locators stay in project/device and never enter the brief snapshot.
+Resolve the content root through [content paths](content-paths.md), then explicit workspace-relative project reference → content-root project.md → standalone. Do not read @global, absolute, or outside-project configuration. In layout 2, config libraries, media, Wiki and frozen control references are relative to content_root; CLI control-document arguments remain host-workspace-relative. Introduce project/brand/channels/authors/visual providers/storage/accounts only when needed. Configuration stores no secrets; credential locators stay in project/device and never enter the brief snapshot.
 
 Three independent axes avoid a mode for every combination:
 
@@ -83,7 +86,7 @@ Writing Style is another independent data choice: article profile → series pro
 
 Freeze body and cover Visual Styles independently with the same precedence and no cross-role inheritance. First mark each body asset evidence/explanation, then official/web/capture/user/create acquisition. The first four preserve original copies, source/treatment receipts, and human review without Style-driven redraw. Only create uses semantic content_slots, Direction, layout, Render Target, and Adapter. source_ids links article evidence and does not replace image-acquisition receipts. Acquisition and local/platform-upload/stable-cdn transport are independent.
 
-For an ordinary first actual visual request, before package creation and without a selected Style or cover reference, recommend one body/cover Style plus same-role alternatives and skip. Freeze only after the user's choice; do not store pending recommendations. Explicit no-interruption/skip uses defaults. Goal/autonomous context selects both IDs from the brief and records the reason. Text-only writing/revision/imageless rendering retains initializer defaults and records the skipped visual work in Asset Check. Existing packages retain snapshots unless the user requests change. Private Style writes use the confirmed project interface; built-ins remain read-only.
+For an ordinary first actual visual request, before package creation and without a selected Style or cover reference, recommend one body/cover Style plus same-role alternatives and skip. Freeze only after the user's choice; do not store pending recommendations. Explicit no-interruption/skip uses defaults. Goal/autonomous context selects both IDs from the brief and records the reason. Text-only writing/revision retains initializer defaults and completes through Writing Preflight and Delivery. Asset Check is created only for actual visual work. Imageless rendering uses Platform Preflight. Existing packages retain snapshots unless the user requests change. Private Style writes use the confirmed project interface; built-ins remain read-only.
 
 For this choice, autonomous mode requires an explicit no-interruption request or active goal/automation context. A CLI invocation, available defaults, or general safe-default instruction does not waive the ordinary visual choice. After a user decision, do not ask again for the same approval.
 

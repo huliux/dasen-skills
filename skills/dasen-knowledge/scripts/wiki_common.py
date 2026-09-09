@@ -8,6 +8,7 @@ import json
 import os
 from pathlib import Path
 import tempfile
+import sys
 from typing import Any
 
 try:
@@ -102,11 +103,15 @@ def find_wiki(start: Path | None = None) -> Path:
     current = (start or Path.cwd()).resolve()
     if current.name == "wiki" and (current / "schema.md").is_file():
         return current
-    for candidate in (current, *current.parents):
-        wiki = candidate / "wiki"
-        if (wiki / "schema.md").is_file():
-            return wiki
-    raise FileNotFoundError("could not find wiki/schema.md")
+    if start is None:
+        scripts = Path(__file__).resolve().parents[2] / "dasen-content" / "scripts"
+        sys.path.insert(0, str(scripts))
+        from content_paths import select_content_root
+        current = select_content_root(current)
+    wiki = current / "wiki"
+    if (wiki / "schema.md").is_file() and wiki.resolve().is_relative_to(current):
+        return wiki.resolve()
+    raise FileNotFoundError("could not find the selected wiki/schema.md; pass --wiki explicitly")
 
 
 def envelope(ok: bool, mode: str, diagnostics: list[dict], **extra: Any) -> dict:

@@ -3,7 +3,7 @@ name: dasen-content
 description: The single dasen content entry for planning or continuing a series, writing or revising an article, inspecting progress, and preparing visuals or platform deliverables. Use for “策划系列”, “继续这个系列”, “写一篇”, “改这篇稿”, “看看内容进展”, or “排版发布”. Resolve intent before creating a brief; status inspection is read-only. Pure news or information lookup belongs to research tools.
 license: MIT
 metadata:
-  version: 4.3.3
+  version: 5.0.0
   compatibility: Requires Python 3.10+ and PyYAML. Agent Reach and AIHot are optional preferred research integrations. Platform delivery may additionally require the dasen-wechat Python packages, FFmpeg, Remotion, or image generation tools.
 ---
 
@@ -27,11 +27,11 @@ Add `--project-file <workspace-relative-path>` for project capabilities. A missi
 
 1. Read `references/contracts.md` for file, state, identity, precedence, and safety contracts.
 2. Read `references/workflow.md` to distinguish inspection, planning/startup, continuation, and production. Finish inspection or planning-only on that branch. Resume an existing package before initializing another.
-3. Resolve configuration: explicit workspace-relative `--project-file`, then workspace `project.md`, then `standalone`. Read `series.md` only for a bound series. Never read global project settings. Missing brand, account, visuals, or storage does not block an article or local rendering.
+3. Resolve the content root and owned paths using [content paths](references/content-paths.md). Resolve configuration: explicit workspace-relative `--project-file`, then content-root `project.md`, then `standalone`. Read `series.md` only for a bound series. Never read global project settings. Missing brand, account, visuals, or storage does not block an article or local rendering.
 4. Resolve the three brief axes together: `journey: series|breaking|material`, `length: quick|standard|deep|custom`, and `method: original|pattern-adapt|revise`.
 5. If the project requires a topic label, resolve exactly one `topic_label` in this round and preserve it verbatim in title and cover for every journey/method.
 6. Select one writing Style: explicit article choice → series → project → built-in fallback. Freeze its complete rules in the brief.
-7. Resolve body and cover Visual Styles separately. In ordinary conversation, on first entering actual visual production, with no specified Style or cover reference and before creating a package, read the catalog and present one recommendation per role, alternatives of that role, and “skip”; wait for the choice. An explicit skip or no-interruption instruction uses the fallback. Writing, revision, or imageless local rendering retains the initializer's `visual.selection`; record the visual skip in `record.md > Asset Check`, keeping `selection.reason: null` in default/user mode. For goal/autonomous mode, apply the explicit conditions in contracts: select without asking and record a brief-specific reason. A generic instruction to use safe defaults does not itself waive the ordinary visual choice.
+7. Resolve body and cover Visual Styles separately. In ordinary conversation, on first entering actual visual production, with no specified Style or cover reference and before creating a package, read the catalog and present one recommendation per role, alternatives of that role, and “skip”; wait for the choice. An explicit skip or no-interruption instruction uses the fallback. Writing, revision, or imageless local rendering retains the initializer's `visual.selection`; complete with Writing/Delivery receipts (or Platform Preflight for requested HTML), keeping `selection.reason: null` in default/user mode. For goal/autonomous mode, apply the explicit conditions in contracts: select without asking and record a brief-specific reason. A generic instruction to use safe defaults does not itself waive the ordinary visual choice.
 8. Create a package when the user has supplied enough information. Pause only for the high-risk/high-ambiguity cases in workflow. Keep Style, composition, purpose, render method, and provider/model separate.
 9. Advance by state. Each stage reads its own inputs; record blockers instead of inventing missing outputs.
 
@@ -78,7 +78,9 @@ Project → series → article options compile length, title, and source policy.
 | Images/screenshots for stable prose | `dasen-visual` |
 | Local WeChat format or authorized draft delivery | `dasen-wechat` |
 | Video with a separately installed compatible stage | `dasen-video` (private optional extension, absent from public core) |
-| Explicit knowledge ingestion/query request | `dasen-knowledge` |
+| Relevant Wiki evidence during research, or explicit knowledge operations | Read relevant Wiki through research; route explicit ingest/query/reflect/lint to `dasen-knowledge` |
+
+Plain writing/revision ends at the requested manuscript with sources and Writing Preflight. Enter visual or native HTML production only when that output is requested; text-only delivery needs no Asset Check or HTML render.
 
 For pure AI news lookup, prefer installed AIHot when suitable; for platform retrieval, prefer installed Agent Reach. Otherwise use available native retrieval. Do not create a package until the user wants content production. Future platforms use their own platform IDs and stages; do not invent a general adapter before a second implementation exists.
 
