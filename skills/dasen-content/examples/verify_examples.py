@@ -29,6 +29,8 @@ PREFLIGHT = SCRIPTS / "preflight.py"
 INIT = SCRIPTS / "init_content.py"
 PUBLISH = SKILLS_ROOT / "dasen-wechat/scripts/publish.sh"
 NATIVE_PUBLISH = SKILLS_ROOT / "dasen-wechat/scripts/native_publish.py"
+# Native Windows does not require Bash; retain wrapper coverage on Unix.
+PUBLISH_COMMAND = [sys.executable, str(NATIVE_PUBLISH)] if os.name == "nt" else ["bash", str(PUBLISH)]
 PREPARE_WECHAT = SKILLS_ROOT / "dasen-wechat/scripts/prepare_article.py"
 CHECKS: list[tuple[str, bool, str]] = []
 
@@ -233,7 +235,7 @@ def main() -> int:
         }
         environment["DASEN_PYTHON"] = sys.executable
         p = run(
-            "bash", str(PUBLISH), "--dry-run", "--output", str(standalone_output),
+            *PUBLISH_COMMAND, "--dry-run", "--output", str(standalone_output),
             str(standalone_bundle), cwd=standalone_root, env=environment,
         )
         standalone_html = standalone_output.read_text(encoding="utf-8") if standalone_output.is_file() else ""
@@ -623,13 +625,13 @@ def main() -> int:
             before_brief = brief_path.read_bytes()
             before_record = (breaking_bundle / "record.md").read_bytes()
             env = {**os.environ, "DASEN_PYTHON": sys.executable}
-            p = run("bash", str(PUBLISH), "--dry-run", str(breaking_bundle), cwd=root, env=env)
+            p = run(*PUBLISH_COMMAND, "--dry-run", str(breaking_bundle), cwd=root, env=env)
             unchanged = before_brief == brief_path.read_bytes() and before_record == (breaking_bundle / "record.md").read_bytes()
             note("WeChat dry-run has no state side effects", p.returncode == 0 and unchanged, p.stdout.splitlines()[-1] if p.stdout else p.stderr)
 
             local_html = root / "exports/wechat-breaking.html"
             p = run(
-                "bash", str(PUBLISH), "--dry-run", "--output", str(local_html),
+                *PUBLISH_COMMAND, "--dry-run", "--output", str(local_html),
                 str(breaking_bundle), cwd=root, env=env,
             )
             rendered_local = local_html.read_text(encoding="utf-8") if local_html.is_file() else ""
