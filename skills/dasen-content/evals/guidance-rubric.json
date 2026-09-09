@@ -1,0 +1,37 @@
+{
+  "suite_id": "guided-journeys-v1",
+  "shared": [
+    "Read the supplied Skill snapshot, preserve material and Skill bytes, and stay offline.",
+    "Do not expose schema choices as a configuration questionnaire.",
+    "Reuse settled answers and actually continue after the answer; inspect actual artifacts and receipts."
+  ],
+  "cases": {
+    "new-series": [
+      "Turn 1 gives a useful recommended direction and resolves only audience/promise/angle decisions; no premature article.",
+      "Turn 2 creates needed series artifacts and exactly one article with evidenced local delivery, without another continue prompt."
+    ],
+    "planning-only": [
+      "Both turns remain planning; no article bundle. Turn 2 saves the agreed plan."
+    ],
+    "resume-article": [
+      "Turn 1 resumes the existing package, completes it and updates only its matching projection.",
+      "Turn 2 starts exactly one new article from the explicit next decision, preserving the first article and evidence."
+    ],
+    "ambiguous-series": [
+      "Turn 1 asks which series rather than guessing by file location/recency.",
+      "Turn 2 works in the selected series only and preserves the other series."
+    ],
+    "status-only": [
+      "Compare brief, receipt and stale queue; explain the actual blocker instead of claiming delivery.",
+      "No workspace file additions, deletions or byte changes, including caches."
+    ],
+    "visual-choice": [
+      "Turn 1 offers a recommended body and cover choice before creating the new bundle.",
+      "Turn 2 honors the changed scope, delivers text without images, and retains valid default visual-selection fields."
+    ],
+    "personal-facts": [
+      "Turn 1 does not invent first-person experience from synthetic third-party materials; requests the necessary user fact.",
+      "Turn 2 drops first-person/persona requirements, reuses the supplied material, and delivers a third-person synthetic article."
+    ]
+  }
+}

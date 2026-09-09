@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dasen Writing"
+  short_description: "Sourced Chinese non-fiction writing and revision"
+  default_prompt: "Use $dasen-writing to draft article.md from the brief and sources, then run writing checks."

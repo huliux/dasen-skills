@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.backup/
+eval-results/
+.agents/
+.pytest_cache/
+.venv/
+*.pre-dasen.bak

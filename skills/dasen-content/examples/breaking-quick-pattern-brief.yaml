@@ -1,0 +1,62 @@
+schema_version: 3
+configuration: project
+id: 2026-09-04-breaking-pattern-example
+brand: {name: Northstar, aliases: []}
+journey: breaking
+length: quick
+method: pattern-adapt
+platform: wechat
+project: example-wechat
+project_file: project.md
+series: null
+series_file: null
+profile: flash
+style_profile:
+  id: flash
+  label: 新闻快讯型
+  revision: 1
+  summary: 在信息变化期缩小承诺，快速交付已确认事实、直接影响和未知项。
+  origin: builtin
+  source: {kind: dasen-original, sample_refs: [], captured_at: null}
+  voice: [快、准、透明，不抢跑预测, 明确区分官方宣布、独立证据和作者判断]
+  rhythm: [短段落承载单一事实或影响, 不用换词重复拉长篇幅]
+  structure: [先写主体在什么时间发生或公布了什么, 再写关键事实、读者关系、未知项和下一核验信号]
+  evidence: [正文或来源说明标出 checked_at, 单一官方来源只支撑官方已经宣布的范围]
+  avoid: [把未确认效果写成结论, 在信息不足时强行升格为行业趋势]
+  selected_from: brief
+image_policy: stable-cdn
+response_stage: alert
+status: brief
+objective: 在信息仍变化时快速说明已确认事实和读者影响
+audience: 关注 AI 工具的普通职场人
+deliverable: 不超过 1000 字的单源透明快文
+topic_label: OpenAI
+checked_at: 2026-09-04T16:00:00+08:00
+requirements:
+  must_include: [已确认事实, 单源声明, 未知项, 下一观察点]
+  required_phrases: []
+  avoid: [性能猜测, 行业升华]
+  forbidden_phrases: []
+pattern_reference:
+  url: https://example.com/reference-article
+  borrow: [hook, information-order, evidence-density]
+  avoid_copying: [original-wording, personal-experience, unique-metaphors, signature-catchphrases]
+product_placement:
+  enabled: false
+  product_name: Orbit
+  aliases: []
+  mode: soft
+  max_ratio: 0.05
+  required_facts: []
+author_persona:
+  enabled: false
+  profile_id: lin
+  name: Lin
+  contacts: [lin@example.test]
+  uses: []
+  verified_experiences: []
+source_policy: {minimum: 1, primary_required: true, second_source_preferred: true}
+channel:
+  display_name: Example Channel
+  default_author: Example Author
+  required_tags: [ExampleTag]

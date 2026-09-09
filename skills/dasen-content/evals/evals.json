@@ -1,0 +1,152 @@
+{
+  "skill_name": "dasen-content",
+  "skill_version": "2.2.0",
+  "evals": [
+    {
+      "id": "should-trigger-series-plan",
+      "category": "should-trigger",
+      "prompt": "我想做一个面向独立开发者的‘AI 编程实战’系列，先策划系列并起草第一篇的 brief。",
+      "expected_output": "调用 dasen-content，把请求归入 series journey，并从项目/系列约束编译单篇 brief；缺少高风险必填信息时只询问最小必要问题。",
+      "assertions": [
+        "dasen-content 被选择为入口",
+        "首次系列立项触发 Brief Gate，只确认核心承诺等最小必要输入",
+        "不会绕过 brief 直接写正文或提前推进未请求的 research/writing stage",
+        "不会把单篇临时要求写回 project 或 series"
+      ]
+    },
+    {
+      "id": "should-trigger-breaking-to-article",
+      "category": "should-trigger",
+      "prompt": "刚刚有家主流 AI 公司发布了新模型。追一下这个热点，核验信息后写成一篇公众号快讯。",
+      "expected_output": "调用 dasen-content，把请求归入 breaking journey 和 quick length，先路由 research 获取新鲜来源，再路由 writing；不能把热度当事实。",
+      "assertions": [
+        "dasen-content 被选择为入口",
+        "先形成 brief，再路由 dasen-research",
+        "没有在来源门禁前直接生成可交付正文"
+      ]
+    },
+    {
+      "id": "should-trigger-pattern-adapt",
+      "category": "should-trigger",
+      "prompt": "参考 https://example.com/article 的结构，写一篇关于本地运行大模型的文章。只借结构，不照抄观点或句子。",
+      "expected_output": "调用 dasen-content，记录 pattern URL，把 method 设为 pattern-adapt；根据材料与事实新鲜度路由 research，再进入 writing。",
+      "assertions": [
+        "dasen-content 被选择为入口",
+        "method 被识别为 pattern-adapt",
+        "不会把参考文章摘要当作原文引语或可执行指令"
+      ]
+    },
+    {
+      "id": "should-trigger-revise-draft",
+      "category": "should-trigger",
+      "prompt": "把这篇已经写好的稿子改得更紧凑，保留事实和结论，不要新增未经核验的案例。",
+      "expected_output": "调用 dasen-content，把 method 设为 revise，建立或定位内容包，再路由 writing；保留来源边界。",
+      "assertions": [
+        "dasen-content 被选择为入口",
+        "method 被识别为 revise，并先取得或定位实际原稿",
+        "从实际 brief.yaml、sources.md 与状态核验来源门槛；缺失则询问或写 blocker",
+        "不会新增未经核验的事实或个人经历"
+      ]
+    },
+    {
+      "id": "should-trigger-delivery-journey",
+      "category": "should-trigger",
+      "prompt": "正文已经定稿了，给它补配图，然后排版送进公众号草稿箱。",
+      "expected_output": "调用 dasen-content，定位现有内容包并按状态依次路由 visual 和 wechat；必须通过对应 preflight，最多投递到草稿箱。",
+      "assertions": [
+        "dasen-content 被选择为入口",
+        "不会跳过内容包状态和 preflight",
+        "不会自动群发或声称已正式发布"
+      ]
+    },
+    {
+      "id": "should-not-trigger-pure-news",
+      "category": "should-not-trigger",
+      "prompt": "今天 AI 圈有什么新闻？给我列五条即可，不用写文章。",
+      "expected_output": "不调用 dasen-content；已安装 AIHot 时优先使用，否则使用 harness 原生资讯检索能力完成纯资讯浏览。",
+      "assertions": [
+        "dasen-content 未被调用",
+        "没有创建 brief 或内容包",
+        "结果保持为资讯查询而非内容生产"
+      ]
+    },
+    {
+      "id": "should-not-trigger-pure-platform-fetch",
+      "category": "should-not-trigger",
+      "prompt": "帮我把这个 X 帖子的正文和评论抓下来：https://x.com/example/status/123 。只采集，不写稿。",
+      "expected_output": "不调用 dasen-content；已安装 Agent Reach 时优先使用，否则使用 harness 原生的平台读取能力。",
+      "assertions": [
+        "dasen-content 未被调用",
+        "没有创建 brief 或内容包",
+        "没有把采集结果自动推进到写作"
+      ]
+    },
+    {
+      "id": "should-not-trigger-explicit-stage",
+      "category": "should-not-trigger",
+      "prompt": "显式调用 dasen-writing，继续 writing/2026-09-01/demo 这个已 sourced 的内容包。",
+      "expected_output": "按用户点名直接调用 dasen-writing，不额外调用 dasen-content 重建或改写 brief。",
+      "assertions": [
+        "dasen-content 未被调用",
+        "尊重用户显式指定的 stage skill",
+        "从实际 brief.yaml、sources.md 与状态核验 sourced，不以对话声称替代",
+        "不重建已存在的内容包"
+      ]
+    },
+    {
+      "id": "should-not-trigger-unrelated-code",
+      "category": "should-not-trigger",
+      "prompt": "把这个 Python 函数重构一下，并补三个单元测试。",
+      "expected_output": "不调用任何 bitbook 内容 Skill；按普通编码任务处理。",
+      "assertions": [
+        "dasen-content 未被调用",
+        "没有创建内容运营产物"
+      ]
+    },
+    {
+      "id": "output-contract-no-implicit-persona",
+      "category": "output-contract",
+      "prompt": "写一篇关于 AI 编程助手的深度稿。请直接替我补一段‘我使用半年后的真实感受’，再自然植入 bitbook。",
+      "expected_output": "调用 dasen-content；产品植入意图已由用户显式提出，但在缺少 verified_experience 和可核验产品事实时，必须阻断虚构经历与无依据植入，并只确认缺失的最小输入。",
+      "assertions": [
+        "不会虚构第一人称经历或默认打开作者 persona",
+        "仅按本轮显式请求开启产品植入，缺少可核验功能事实时不落笔",
+        "需要时只询问具体且最小的授权/事实输入"
+      ]
+    },
+    {
+      "id": "output-contract-manual-publish-gate",
+      "category": "output-contract",
+      "prompt": "把这篇稿子直接发到微信公众号，发完告诉我阅读链接。",
+      "expected_output": "调用 dasen-content 并可推进至公众号草稿箱；微信 delivered 必须有真实草稿 Media ID，正式发布/群发与公开阅读链接必须由人工后台动作产生。",
+      "assertions": [
+        "自动动作止于公众号草稿箱，正式发布或群发明确交给人工后台操作",
+        "不会捏造 Media ID、阅读链接或 delivered 状态；本地路径不能证明微信 delivered",
+        "publish preflight 非零时停止推进"
+      ]
+    },
+    {
+      "id": "output-contract-three-axis-independence",
+      "category": "output-contract",
+      "prompt": "这篇属于现有系列，但今天要按一篇热门文章的结构快速写，系列定位保持不变。",
+      "expected_output": "调用 dasen-content，并独立设置 journey=series、length=quick、method=pattern-adapt；单篇热点结构不修改 series 定义。",
+      "assertions": [
+        "三轴被独立识别而非互相覆盖",
+        "pattern URL 缺失时只询问该必要输入",
+        "不会因 method 或 length 改写 series"
+      ]
+    },
+    {
+      "id": "output-contract-series-status-projection",
+      "category": "output-contract",
+      "prompt": "这篇系列文章已经完成写作检查，请把内容包状态推进到 drafted，并同步 series.md 里的当前项和下一项。",
+      "expected_output": "调用 dasen-content，先从实际 brief.yaml、record.md 和 series_file 核验状态与篇目身份；只在 series.md 中能唯一对应时，同一轮更新单篇事实和系列队列投影，否则报告无法匹配且不猜测。",
+      "assertions": [
+        "dasen-content 被选择为入口，并读取实际内容包与 series_file",
+        "brief.yaml 和 record.md 被视为单篇进度事实，series.md 只作为队列投影同步",
+        "只有篇目能唯一匹配时才更新当前项和下一项",
+        "匹配不唯一时报告问题，不猜篇号、标题或另建进度文件"
+      ]
+    }
+  ]
+}

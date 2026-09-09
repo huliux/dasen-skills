@@ -1,0 +1,7 @@
+# Native implementation research boundary
+
+Read only when maintaining rendering, images, or API code. The implementation follows four task-derived layers: frontmatter/CommonMark parsing, safe HTML and inline theme, image handling/permanent cover/cache, and draft API with a real Media ID. Official WeChat server APIs own runtime facts.
+
+The design compared the public flow of [Wenyan CLI 2.0.11](https://github.com/caol64/wenyan-cli/tree/v2.0.11) and [core 3.0.11](https://github.com/caol64/wenyan-core/tree/v3.0.11), Apache-2.0. No TypeScript payload, registry, CSS applier, or theme implementation was copied. Python orchestration, allowlists, theme data, cache, and clients are this repository's implementation. Legacy names are migration inputs only. The pinned provenance receipt is in the root THIRD_PARTY.md.
+
+When changing code, verify current official [token](https://developers.weixin.qq.com/doc/service/api/base/api_getaccesstoken), [body image](https://developers.weixin.qq.com/doc/service/api/material/permanent/api_uploadimage.html), [permanent material](https://developers.weixin.qq.com/doc/service/api/material/permanent/api_addmaterial), and [draft](https://developers.weixin.qq.com/doc/service/api/draftbox/draftmanage/api_draft_add) fields, sizes, formats, and account permissions. External implementations may inform mechanism/difference tests but cannot override official APIs or actual receipts.

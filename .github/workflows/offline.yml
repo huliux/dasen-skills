@@ -1,0 +1,34 @@
+name: Offline checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+env:
+  PYTHONUTF8: "1"
+permissions:
+  contents: read
+jobs:
+  offline:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, windows-latest]
+        python: ['3.10', '3.13']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          version: '0.12.10'
+          python-version: ${{ matrix.python }}
+          enable-cache: false
+      - run: uv sync --locked
+      - run: uv run --locked python scripts/export_runtime.py --check
+      - run: uv run --locked python scripts/validate.py
+      - run: uv run --locked python -m pytest -q
+      - run: uv run --locked python skills/dasen-content/examples/verify_examples.py
+      - run: uv run --locked python scripts/build_public.py --kind source --output "${{ runner.temp }}/dasen-source"
+      - run: uv run --locked python scripts/build_public.py --kind install --output "${{ runner.temp }}/dasen-install"

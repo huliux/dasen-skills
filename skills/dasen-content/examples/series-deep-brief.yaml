@@ -1,0 +1,56 @@
+schema_version: 3
+configuration: project
+id: 2026-09-04-series-deep-example
+brand: {name: Northstar, aliases: []}
+journey: series
+length: deep
+method: original
+platform: wechat
+project: example-wechat
+project_file: project.md
+series: example-series
+series_file: series.md
+profile: practical
+style_profile:
+  id: practical
+  label: 实用清晰型
+  revision: 1
+  summary: 直接解决读者任务，以可执行信息、真实结果和适用边界为主。
+  origin: builtin
+  source: {kind: dasen-original, sample_refs: [], captured_at: null}
+  voice: [平实、准确、克制，不用身份感代替论证, 优先回答读者当前要完成的任务]
+  rhythm: [段落短而完整，长短句自然交替, 重点句可以独立成段，但不连续堆口号]
+  structure: [先给问题或结果，再补必要背景, 依次交代做法、检查方法、结果和适用边界]
+  evidence: [判断靠近依据，数字注明对象、时间与口径, 声称跑通时给出可复查的结果或回执]
+  avoid: [空泛开场、功能清单和重复总结, 虚构经历、效果或读者心理]
+  selected_from: brief
+image_policy: platform-upload
+status: brief
+objective: 用一个真实职场场景验证可复制的 AI 工作方案
+audience: 非技术岗职场人
+deliverable: 可复制步骤、真实结果、截图、踩坑与限制
+topic_label: Codex
+requirements:
+  must_include: [真实运行结果, 适用边界]
+  required_phrases: []
+  avoid: [纯工具清单, 强行升华]
+  forbidden_phrases: []
+product_placement:
+  enabled: false
+  product_name: Orbit
+  aliases: []
+  mode: soft
+  max_ratio: 0.05
+  required_facts: []
+author_persona:
+  enabled: false
+  profile_id: lin
+  name: Lin
+  contacts: [lin@example.test]
+  uses: []
+  verified_experiences: []
+source_policy: {minimum: 5, primary_required: false, second_source_preferred: true}
+channel:
+  display_name: Example Channel
+  default_author: Example Author
+  required_tags: [ExampleTag]

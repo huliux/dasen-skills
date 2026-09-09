@@ -1,0 +1,193 @@
+# Distribution-owned Dasen visual defaults. Content runs may add project-private styles,
+# but cannot modify or shadow these IDs.
+schema_version: 1
+styles:
+  body-clean-editorial:
+    role: body
+    label: 清晰编辑图
+    revision: 1
+    summary: 用克制的编辑排版解释对比、步骤与结论，适合多数知识型正文。
+    source: {kind: dasen-original, samples: [], conflicts: [], captured_at: null}
+    compatible_methods: [html-css, image-model, manual]
+    tokens:
+      colors: {canvas: "#FAFAF7", surface: "#FFFFFF", ink: "#171717", muted: "#66645F", accent: "#D95D39", line: "#D9D6CF"}
+      typography: {heading: sans-bold, body: sans-regular, annotation: sans-medium}
+      spacing: {unit: 8, section: 32}
+      geometry: {radius: 12, line_width: 2}
+    components:
+      canvas: {fill: "{tokens.colors.canvas}"}
+      information-node: {fill: "{tokens.colors.surface}", text: "{tokens.colors.ink}", border: "{tokens.colors.line}"}
+      connector: {stroke: "{tokens.colors.accent}"}
+      caption: {text: "{tokens.colors.muted}"}
+    constraints:
+      mobile_min_text_px: 18
+      max_information_units: 7
+      evidence_treatment: 数据与截图注明来源，观点节点不伪装成数据。
+    do: [先定信息关系再排版, 一张图只解释一个中心关系, 保留充足留白]
+    avoid: [装饰性图标堆积, 伪造界面或统计数字, 把整篇文章塞进一张图]
+    omitted: []
+    known_gaps: [复杂数据图仍需按具体数据单独设计]
+
+  body-technical-dark:
+    role: body
+    label: 深色技术图
+    revision: 1
+    summary: 用深色画布和高对比信号色表达系统、代码、调用链与风险边界。
+    source: {kind: dasen-original, samples: [], conflicts: [], captured_at: null}
+    compatible_methods: [html-css, image-model, manual]
+    tokens:
+      colors: {canvas: "#111318", surface: "#1B1F27", ink: "#F4F7FB", muted: "#A7B0BF", accent: "#63D8FF", secondary: "#9B8CFF", risk: "#FF6B6B", line: "#353C49"}
+      typography: {heading: sans-bold, body: sans-regular, code: mono-regular}
+      spacing: {unit: 8, section: 28}
+      geometry: {radius: 10, line_width: 2}
+    components:
+      canvas: {fill: "{tokens.colors.canvas}"}
+      information-node: {fill: "{tokens.colors.surface}", text: "{tokens.colors.ink}", border: "{tokens.colors.line}"}
+      connector: {stroke: "{tokens.colors.accent}"}
+      evidence-frame: {border: "{tokens.colors.secondary}"}
+      annotation: {text: "{tokens.colors.muted}"}
+      caption: {text: "{tokens.colors.muted}"}
+    constraints:
+      mobile_min_text_px: 18
+      max_information_units: 8
+      evidence_treatment: 真实代码和系统结果使用独立证据框，风险节点使用唯一风险色。
+    do: [保持单一主调用链, 用颜色区分状态而非装饰, 给失败路径明确出口]
+    avoid: [无意义霓虹背景, 用终端外观冒充真实日志, 同时使用多条竞争主线]
+    omitted: []
+    known_gaps: [不同代码语言的语法高亮由渲染 Adapter 决定]
+
+  body-whiteboard-clarity:
+    role: body
+    label: 白板讲解图
+    revision: 1
+    summary: 用轻微手绘感和少量颜色把抽象机制、分支与反馈讲清楚。
+    source: {kind: dasen-original, samples: [], conflicts: [], captured_at: null}
+    compatible_methods: [html-css, image-model, manual]
+    tokens:
+      colors: {canvas: "#FFFDF7", ink: "#171717", action: "#F28C28", state: "#2E79C7", risk: "#C83B3B", line: "#BEB8AA"}
+      typography: {heading: sans-bold, body: sans-medium, annotation: handwritten-optional}
+      spacing: {unit: 8, section: 30}
+      geometry: {radius: 8, line_width: 3}
+    components:
+      canvas: {fill: "{tokens.colors.canvas}"}
+      information-node: {text: "{tokens.colors.ink}", border: "{tokens.colors.line}"}
+      connector: {stroke: "{tokens.colors.action}"}
+      feedback: {stroke: "{tokens.colors.state}"}
+      risk-marker: {fill: "{tokens.colors.risk}"}
+      caption: {text: "{tokens.colors.ink}"}
+    constraints:
+      mobile_min_text_px: 19
+      max_information_units: 6
+      evidence_treatment: 编辑图只解释关系；真实结果、界面和精确数据另用有来源资产。
+    do: [保留一条视觉主线, 标签沿用正文术语, 用不规则感增加亲和力但保持对齐]
+    avoid: [固定角色或吉祥物, 过度拟物纸张, 把手绘感变成难以辨认]
+    omitted: [默认不含人物与品牌标识]
+    known_gaps: [手绘线条在不同渲染器中的一致性需要预览验证]
+
+  cover-clean-editorial:
+    role: cover
+    label: 清晰编辑封面
+    revision: 1
+    summary: 用强标题、克制色块和明确留白快速表达主题，是无参考图时的通用封面兜底。
+    source: {kind: dasen-original, samples: [], conflicts: [], captured_at: null}
+    compatible_methods: [html-css, image-model, manual]
+    tokens:
+      colors: {canvas: "#F7F5F0", ink: "#121212", accent: "#E05A3F", muted: "#716D65", surface: "#FFFFFF"}
+      typography: {headline: sans-heavy, label: sans-bold, support: sans-regular}
+      spacing: {unit: 8, outer: 48}
+      geometry: {radius: 18, line_width: 0}
+    components:
+      headline-zone: {text: "{tokens.colors.ink}", align: left}
+      topic-pill: {fill: "{tokens.colors.ink}", text: "{tokens.colors.surface}"}
+      hero-subject: {treatment: abstract-editorial-object}
+      atmosphere-layer: {treatment: restrained-flat-depth}
+      safe-area: {inset_percent: 6}
+    constraints:
+      headline_max_chars: 28
+      safe_area_percent: 6
+      crop_strategy: 主标题与主题标签始终留在安全区，主视觉允许边缘裁切。
+    do: [缩略图先读出主题与标题, 只保留一个主视觉, 用色块建立层级]
+    avoid: [小字信息墙, 未授权品牌标识, 用正文截图充当营销主视觉]
+    omitted: []
+    known_gaps: [极长标题需要由 brief 提供人工断行]
+
+  cover-human-editorial:
+    role: cover
+    label: 人物编辑封面
+    revision: 1
+    summary: 以真实或获授权人物和工作场景建立亲近感，适合经验、访谈和复盘类内容。
+    source: {kind: dasen-original, samples: [], conflicts: [], captured_at: null}
+    compatible_methods: [image-model, manual]
+    tokens:
+      colors: {canvas: "#EFE7DC", ink: "#181512", accent: "#C85A3E", light: "#FFF8EE", shadow: "#6B5144"}
+      typography: {headline: sans-heavy, label: sans-bold, support: sans-regular}
+      spacing: {unit: 8, outer: 44}
+      geometry: {radius: 20, line_width: 0}
+    components:
+      headline-zone: {text: "{tokens.colors.ink}", align: left}
+      hero-subject: {treatment: documentary-human-scene}
+      atmosphere-layer: {treatment: warm-natural-light}
+      topic-pill: {fill: "{tokens.colors.accent}", text: "{tokens.colors.light}"}
+      safe-area: {inset_percent: 6}
+    constraints:
+      headline_max_chars: 24
+      safe_area_percent: 6
+      crop_strategy: 人脸、手部和关键动作保持完整，文字不压住五官。
+    do: [人物动作与文章立意直接相关, 使用自然光与真实材质, 让标题和人物视线形成方向]
+    avoid: [伪造用户本人或第三方作者, 没有授权的头像与制服, 过度磨皮和塑料质感]
+    omitted: [没有人物授权或生成许可时省略可识别身份]
+    known_gaps: [人物一致性依赖具体生成或摄影能力]
+
+  cover-cinematic-system:
+    role: cover
+    label: 电影感系统封面
+    revision: 1
+    summary: 用深色空间、单一发光主结构和强对比营造技术系统的规模感与行动张力。
+    source: {kind: dasen-original, samples: [], conflicts: [], captured_at: null}
+    compatible_methods: [image-model, html-css, manual]
+    tokens:
+      colors: {canvas: "#090B12", ink: "#F7F8FC", accent: "#7C5CFF", signal: "#4ED7FF", muted: "#8F96A8"}
+      typography: {headline: sans-heavy, label: sans-bold, support: sans-medium}
+      spacing: {unit: 8, outer: 48}
+      geometry: {radius: 16, line_width: 1}
+    components:
+      headline-zone: {text: "{tokens.colors.ink}", align: left}
+      hero-subject: {treatment: single-system-object}
+      atmosphere-layer: {treatment: dark-volumetric-depth}
+      topic-pill: {fill: "{tokens.colors.accent}", text: "{tokens.colors.ink}"}
+      safe-area: {inset_percent: 6}
+    constraints:
+      headline_max_chars: 24
+      safe_area_percent: 6
+      crop_strategy: 主结构保留可识别轮廓，发光粒子可以边缘裁切。
+    do: [只设置一个视觉能量中心, 光线指向核心关系, 通过尺度而非元素数量制造冲击]
+    avoid: [随机电路纹理, 多个竞争光源, 用科幻氛围冒充真实产品能力]
+    omitted: [默认不放真实产品界面]
+    known_gaps: [模型生成的文字与逻辑连接必须后置排版或人工复核]
+
+  cover-knowledge-glow:
+    role: cover
+    label: 知识流光封面
+    revision: 1
+    summary: 用明暗过渡、知识节点与流动轨迹表达认知转化、研究和学习主题。
+    source: {kind: dasen-original, samples: [], conflicts: [], captured_at: null}
+    compatible_methods: [image-model, html-css, manual]
+    tokens:
+      colors: {canvas: "#10132A", ink: "#F7F4FF", accent: "#A986FF", signal: "#65E6D3", muted: "#A8A7BC"}
+      typography: {headline: sans-heavy, label: sans-bold, support: sans-regular}
+      spacing: {unit: 8, outer: 48}
+      geometry: {radius: 22, line_width: 2}
+    components:
+      headline-zone: {text: "{tokens.colors.ink}", align: left}
+      hero-subject: {treatment: knowledge-nodes-and-path}
+      atmosphere-layer: {treatment: soft-luminous-depth}
+      topic-pill: {fill: "{tokens.colors.signal}", text: "{tokens.colors.canvas}"}
+      safe-area: {inset_percent: 6}
+    constraints:
+      headline_max_chars: 26
+      safe_area_percent: 6
+      crop_strategy: 核心节点和标题保持完整，辅助轨迹可自然溢出。
+    do: [把流动方向对应文章中的转化过程, 节点数量服从一个中心概念, 用冷暖变化区分输入与结果]
+    avoid: [发光大脑等陈词滥调, 无意义数据粒子, 把氛围节点写成事实证据]
+    omitted: []
+    known_gaps: [抽象知识节点需要结合 brief 重新赋义]
