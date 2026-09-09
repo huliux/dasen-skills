@@ -101,9 +101,10 @@ Exit 1 is local failure; exit 2 is local success with native discovery unverifie
 Automatic preparation and project binding are not implemented on Windows. For an explicitly requested local test, use an existing Python 3.10+ to create a separate venv outside the artifact, then run in PowerShell:
 
 ```powershell
+$env:PYTHONUTF8 = "1"
 python -m venv "<new-venv>"
 & "<new-venv>/Scripts/python.exe" -m pip install --require-hashes -r "<artifact>/requirements.txt"
 & "<new-venv>/Scripts/python.exe" -B "<artifact>/skills/dasen-content/scripts/install_check.py" --json
 ```
 
-Use the validated interpreter without relying on activation. Report local readiness separately from the unimplemented binding route. Do not run the macOS shell bootstrap or project installer on Windows, or claim that these checks activate a host.
+UTF-8 mode applies to this PowerShell session and its child processes. Use the validated interpreter without relying on activation. Report local readiness separately from the unimplemented binding route. Do not run the macOS shell bootstrap or project installer on Windows, or claim that these checks activate a host.
