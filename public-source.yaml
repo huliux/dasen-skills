@@ -39,6 +39,7 @@ files:
   - docs/adr/0001-project-selection-with-shared-runtime.md
   - docs/evidence/installation-readiness.md
   - docs/evidence/project-bindings.md
+  - docs/evidence/content-layout.md
   - docs/authoring.md
   - docs/maintenance.md
   - docs/usage.md

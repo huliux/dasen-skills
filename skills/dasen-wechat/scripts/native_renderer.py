@@ -34,7 +34,7 @@ VOID_TAGS = {"br", "hr", "img"}
 ALLOWED_TAGS = {
     "a", "blockquote", "br", "code", "del", "em", "figcaption", "figure", "h1", "h2", "h3",
     "h4", "h5", "h6", "hr", "img", "li", "ol", "p", "pre", "s", "section", "span", "strong",
-    "table", "tbody", "td", "th", "thead", "tr", "ul",
+    "table", "tbody", "td", "th", "thead", "tr", "ul", "mark", "u", "sup", "sub", "small", "kbd", "abbr",
 }
 DANGEROUS_TAGS = {"script", "style", "iframe", "object", "embed", "svg", "math", "form", "input", "button"}
 ALLOWED_ATTRS = {
@@ -50,6 +50,7 @@ COMMON_ATTRS = {"style"}
 ALLOWED_STYLE_PROPERTIES = {
     "align-items", "background", "background-color", "border", "border-bottom", "border-color",
     "border-left", "border-radius", "border-right", "border-style", "border-top", "border-width", "box-shadow",
+    "border-collapse", "border-spacing", "list-style-type", "list-style-position", "tab-size",
     "box-sizing", "color", "display", "flex-direction", "font-family", "font-size", "font-style", "font-weight",
     "height", "justify-content", "letter-spacing", "line-height", "margin", "margin-bottom", "margin-left",
     "margin-right", "margin-top", "max-height", "max-width", "min-height", "min-width", "object-fit", "overflow",
@@ -171,6 +172,7 @@ class SafeHtmlInliner(HTMLParser):
         self.output: list[str] = []
         self.skip_depth = 0
         self.open_tags: list[str] = []
+        self.root_children = 0
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         tag = tag.lower()
@@ -184,6 +186,8 @@ class SafeHtmlInliner(HTMLParser):
         if tag not in ALLOWED_TAGS:
             return
         rendered = self._attrs(tag, attrs)
+        if not self.open_tags:
+            self.root_children += 1
         suffix = " /" if tag in VOID_TAGS else ""
         self.output.append(f"<{tag}{rendered}{suffix}>")
         if tag not in VOID_TAGS:
@@ -247,40 +251,65 @@ class SafeHtmlInliner(HTMLParser):
             if name in {"width", "height", "start", "colspan", "rowspan"} and not re.fullmatch(r"\d{1,4}", value):
                 continue
             values[name] = value
-        style = merge_style(self.styles.get(tag, ""), inline_style)
+        base = self.styles.get(tag, "")
+        parent = self.open_tags[-1] if self.open_tags else "root"
+        base = merge_style(base, self.styles.get(f"{parent}_{tag}", ""))
+        if tag in {"ul", "ol"} and "li" in self.open_tags:
+            base = merge_style(base, self.styles.get(f"nested_{tag}", ""))
+        if not self.open_tags and self.root_children == 0:
+            base = merge_style(base, self.styles.get("root_first", ""))
+        style = merge_style(base, inline_style)
         if style:
             values["style"] = style
         return "".join(f' {name}="{html.escape(value, quote=True)}"' for name, value in values.items())
 
 
-def highlight_code(code: str, language: str) -> str:
+def highlight_code(code: str, language: str, styles: dict[str, str] | None = None) -> str:
     aliases = {"shell": "bash", "sh": "bash", "js": "javascript", "ts": "typescript", "yml": "yaml"}
     language = aliases.get(language.lower(), language.lower())
     try:
         lexer = get_lexer_by_name(language) if language else TextLexer()
     except Exception:
         lexer = TextLexer()
-    formatter = HtmlFormatter(nowrap=True, noclasses=True, style=DasenLightStyle)
+    palette = dict(DasenLightStyle.styles)
+    token_groups = {
+        "comment": (Comment,), "keyword": (Keyword,), "number": (Number,),
+        "string": (Literal, String), "operator": (Operator,),
+        "function": (Name.Function, Name.Class, Name.Namespace, Name.Builtin),
+        "attribute": (Name.Attribute,), "tag": (Name.Tag,), "variable": (Name.Variable,),
+    }
+    for name, tokens in token_groups.items():
+        declarations = parse_style((styles or {}).get(f"syntax_{name}", ""))
+        color = declarations.get("color", "")
+        if re.fullmatch(r"#[0-9a-fA-F]{6}", color):
+            for token in tokens:
+                palette[token] = color
+    palette_type = type("ThemeCodeStyle", (Style,), {"styles": palette})
+    formatter = HtmlFormatter(nowrap=True, noclasses=True, style=palette_type)
     return highlight(code, lexer, formatter).rstrip("\n")
 
 
 def code_block_html(code: str, language: str, styles: dict[str, str]) -> str:
-    toolbar = styles.get("code_toolbar", "")
-    dot = styles.get("code_dot", "")
-    container = styles.get("code_container", "")
-    pre = merge_style(styles.get("pre", ""), "margin:0;border:0;border-radius:0;")
+    # Block code has its own theme rule; inline-code decoration must not leak in.
+    pre = merge_style(styles.get("pre", ""), "")
     code_style = merge_style(
-        styles.get("code", ""),
-        "display:block;padding:0;background-color:transparent;border-radius:0;font-size:12px;white-space:pre;",
+        "display:block;padding:0;margin:0;background-color:transparent;border:0;"
+        "border-radius:0;font-size:inherit;white-space:pre;",
+        styles.get("pre_code", ""),
     )
-    rendered = highlight_code(code, language)
-    dots = "".join(
-        f'<span aria-label="{label}" style="{dot}background-color:{color};"></span>'
-        for label, color in (("close", "#e66a65"), ("minimize", "#e5b454"), ("expand", "#6bbf6a"))
-    )
+    rendered = highlight_code(code, language, styles)
+    toolbar = styles.get("code_toolbar", "")
+    toolbar_html = ""
+    if toolbar and parse_style(toolbar).get("display") != "none":
+        dot = styles.get("code_dot", "")
+        dots = "".join(
+            f'<span aria-label="{label}" style="{dot}background-color:{color};"></span>'
+            for label, color in (("close", "#e66a65"), ("minimize", "#e5b454"), ("expand", "#6bbf6a"))
+        )
+        toolbar_html = f'<section aria-label="代码块工具栏" style="{toolbar}">{dots}</section>'
+    container = styles.get("code_container", "")
     return (
-        f'<section data-dasen-code="true" style="{container}">'
-        f'<section aria-label="代码块工具栏" style="{toolbar}">{dots}</section>'
+        f'<section data-dasen-code="true" style="{container}">{toolbar_html}'
         f'<pre style="{pre}"><code style="{code_style}">{rendered}</code></pre></section>\n'
     )
 

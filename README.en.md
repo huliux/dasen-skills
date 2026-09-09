@@ -46,3 +46,9 @@ Research, writing, knowledge, visuals, and WeChat export are five cooperating st
 Chinese or English Issues and PRs are welcome in the project repository. Contributors can start with `CONTRIBUTING.md` in the source checkout.
 
 Licensed under [MIT](LICENSE). See [origin](ORIGIN.md) and [external components](THIRD_PARTY.md).
+
+New articles use a content bundle: prose and sources in `writing/date/topic/`, plans and receipts in its `evidence/`, and media in the content root’s `assets/`. Existing content workspaces stay in place; new content in a source repository defaults to `content/`, with an explicit root override available. Legacy bundles remain compatible without automatic migration. Plain writing needs no HTML render or image check. Three simple white themes serve local formatting; research reuses relevant Wiki evidence, while new ingestion requires batch confirmation.
+
+The three layouts now adapt the owner-selected MWeb Bear, Lark (blue emphasis), and Typo styles through the native renderer. See [theme names, compatible IDs, and conversion limits](skills/dasen-wechat/themes/README.md).
+
+Body-image captions in all three themes use body size minus 2px, light-gray text, and shared center alignment with the image.

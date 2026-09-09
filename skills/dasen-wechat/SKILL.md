@@ -3,7 +3,7 @@ name: dasen-wechat
 description: Render a sourced content package into safe WeChat HTML or deliver it to the draft box with a real receipt. Run only when routed by dasen-content or explicitly requested. Own formatting, image handling, preflight, and draft delivery; do not change arguments, generate images, or mass-publish.
 license: MIT
 metadata:
-  version: 6.0.0
+  version: 7.1.1
   invocation: router-or-explicit
   compatibility: Requires Python 3.10+, PyYAML, markdown-it-py and Pygments. Draft delivery additionally needs network access plus a complete credential pair in named environment variables or a project/device-configured Keychain locator.
 ---
@@ -33,7 +33,7 @@ python <skills-dir>/dasen-wechat/scripts/native_publish.py writing/YYYY-MM-DD/<s
 
 `publish.sh` remains a POSIX convenience wrapper for the same interface. Credential values stay on the device. Project settings contain environment-variable names or Keychain locators only. Without project configuration, a complete `WECHAT_APP_ID`/`WECHAT_APP_SECRET` pair or complete device Keychain locator may be used. Never combine partial sources or invent a default account/service. See platform rules for credential commands.
 
-Theme/highlight precedence is CLI → brief channel → project channel → built-in default. Current IDs are `dasen-default` and `dasen-light`. Use `migrate_config.py` for old schema conversion and `migrate_namespace.py` for persisted branded values; neither silently changes delivered history.
+Theme/highlight precedence is CLI → brief channel → project channel → built-in default. Theme IDs are `dasen-default`, `dasen-reading`, and `dasen-document`; the highlight ID is `dasen-light`. Use `migrate_config.py` for old schema conversion and `migrate_namespace.py` for persisted branded values; neither silently changes delivered history.
 
 For renderer-only inspection:
 
@@ -70,3 +70,5 @@ Local export requires an actual HTML file and passing applicable checks. Missing
 Remote delivery requires compliant body images, permanent cover upload when present, a real Media ID, and record entries for `dasen native-v1`, canonical theme, and no formal publication. A missing dedicated cover does not block upstream work; if the actual account/API rejects it, report the blocker at that boundary. A human checks title, summary, author, cover, mobile layout, images/GIFs, and end links in WeChat.
 
 Credential failure, invalid images, unknown themes, unsafe HTML, platform errors, or a missing Media ID blocks success receipts.
+
+Choose among the three user-selected MWeb-adapted white-background [themes](themes/README.md); theme selection uses the existing article/channel precedence. New bundles store plans and delivery state in evidence/, while layout-1 bundles retain assets/ through the shared resolver.

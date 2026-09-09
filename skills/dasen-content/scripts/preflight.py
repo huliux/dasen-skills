@@ -24,6 +24,8 @@ except ImportError:
     print("[error] PyYAML 未安装：python3 -m pip install pyyaml", file=sys.stderr)
     raise SystemExit(2)
 
+from content_paths import bundle_root, evidence_dir
+from source_policy import factual_origins
 from project_config import (
     assets_config,
     brand_config,
@@ -210,12 +212,12 @@ def local_asset_error(bundle: Path, target: str) -> str | None:
     raw = Path(target)
     if raw.is_absolute():
         return "不得使用本机绝对路径"
-    assets_root = (bundle / "assets").resolve()
+    assets_root = evidence_dir(bundle)
     resolved = (bundle / raw).resolve()
     try:
         resolved.relative_to(assets_root)
     except ValueError:
-        return "本地文本资产必须位于内容包 assets/，禁止 ../ 或符号链接逃逸"
+        return "本地文本资产必须位于内容包审计目录，禁止 ../ 或符号链接逃逸"
     if not resolved.is_file():
         return "文件不存在"
     return None
@@ -314,14 +316,12 @@ def main() -> int:
 
     if "project_root" in brief:
         errors.append("brief.project_root 已改名为 workspace_root；请先运行 migrate_config.py")
-    workspace_root_ref = str(brief.get("workspace_root") or "").strip()
-    if workspace_root_ref:
-        raw_root = Path(workspace_root_ref)
-        candidate_root = (bundle / raw_root).resolve() if not raw_root.is_absolute() else raw_root
-        if raw_root.is_absolute() or not bundle.is_relative_to(candidate_root):
-            errors.append("brief.workspace_root 必须是指向内容工作区祖先目录的相对路径")
-        else:
-            project_root = candidate_root
+    try:
+        project_root = bundle_root(bundle, brief)
+        evidence = evidence_dir(bundle, brief)
+    except ValueError as exc:
+        print(json.dumps({"passed": False, "stage": args.stage, "errors": [str(exc)]}))
+        return 2
 
     for field, values in ALLOWED.items():
         value = brief.get(field)
@@ -489,10 +489,11 @@ def main() -> int:
     source_urls = {str(src.get("url") or "").strip() for src in sources}
     if pattern_ref and pattern_ref not in source_urls:
         errors.append("pattern_reference.url 未登记到 sources frontmatter")
-    fact_sources = (
-        [src for src in sources if str(src.get("url") or "").strip() != pattern_ref]
-        if pattern_ref else list(sources)
-    )
+    try:
+        fact_sources = factual_origins(sources, pattern_ref)
+    except ValueError as exc:
+        errors.append(str(exc))
+        fact_sources = []
     if len(fact_sources) < minimum:
         errors.append(f"事实来源 {len(fact_sources)} 条，低于门槛 {minimum} 条（结构参考不计）")
     primary_required = bool((brief.get("source_policy") or {}).get("primary_required"))
@@ -599,7 +600,7 @@ def main() -> int:
 
     follow_guide = project_hard_rules.get("follow_guide") or {}
     follow_components: list[str] = []
-    if follow_guide.get("required"):
+    if follow_guide.get("required") and args.stage in {"render", "publish"}:
         guide_url = str(follow_guide.get("url") or "").strip()
         guide_hash = str(follow_guide.get("sha256") or "").strip().lower()
         guide_html_hash = str(follow_guide.get("html_sha256") or "").strip().lower()
@@ -852,10 +853,10 @@ def main() -> int:
         generation = project_visual.get("generation") or {}
         required_cover_model = str(generation.get("model") or "").strip()
         generation_required = bool(generation.get("required"))
-        manifest_path = bundle / "assets/cover.yaml"
+        manifest_path = evidence / "cover.yaml"
         if generation_required or manifest_path.is_file():
             if not manifest_path.is_file():
-                errors.append("brief 要求生成封面，但缺 assets/cover.yaml")
+                errors.append(f"brief 要求生成封面，但缺 {evidence.name}/cover.yaml")
             else:
                 try:
                     cover_manifest = load_yaml(manifest_path)
@@ -1022,7 +1023,7 @@ def main() -> int:
                 errors.append(f"缺频道必带标签：{tag}")
 
     passed = not errors
-    facts += [f"来源：{len(sources)} 条（门槛 {minimum}）", f"标题：{title_len} 单位"]
+    facts += [f"事实来源：{len(fact_sources)} 个原始来源（登记 {len(sources)} 条；门槛 {minimum}）", f"标题：{title_len} 单位"]
     result = {
         "passed": passed,
         "stage": args.stage,

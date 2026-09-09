@@ -29,7 +29,7 @@ visual:
     options: {}
 ```
 
-Assets root is workspace-relative; binaries go under its date/slug directory, while package assets contains audit text. Private visual Style IDs cannot overwrite built-ins. A project layout library records provenance, permitted use, and reference hashes. Provider/model are opaque capabilities, never a universal account/plan prerequisite.
+Assets root is workspace-relative; binaries go under its date/slug directory, while package evidence contains audit text. Private visual Style IDs cannot overwrite built-ins. A project layout library records provenance, permitted use, and reference hashes. Provider/model are opaque capabilities, never a universal account/plan prerequisite.
 
 Without a template/provider/authorization, deliver cover purpose, known aspect ratio, required title and optional topic label, composition/text hierarchy/exclusions, and a transferable prompt without calling services. Use cover_size or a real platform adapter for dimensions; leave unknown dimensions unresolved rather than guessing. Cover Style supplies safe areas. Missing capability blocks only generation.required; absence of a dedicated cover does not block writing/local layout. The real delivery adapter reports an actual platform cover requirement.
 
@@ -37,7 +37,7 @@ Without a template/provider/authorization, deliver cover purpose, known aspect r
 
 1. Read article meaning/title, optional topic_label, visual settings, and asset root.
 2. Read the frozen cover Style. Resolve a selected layout and verify local/HTTPS reference assets and hashes; do not mix unknown-provenance assets.
-3. Fill all variables and record Style ID/revision, layout, Adapter, reference, positive/negative prompts in package assets/cover-prompt.md.
+3. Fill all variables and record Style ID/revision, layout, Adapter, reference, positive/negative prompts in package evidence/cover-prompt.md.
 4. Use the available authorized provider/model. Save versioned source pixels under assets.root/date/slug, with actual receipt, native dimensions, and hash.
 5. Check Chinese/English spelling, title promise, identity permission, fake data, and real-screenshot claims; repair errors.
 6. Produce cover.png using configured cover_size or actual adapter dimensions. Show the local final image before upload when human confirmation is required.
@@ -62,7 +62,7 @@ source_path: assets/YYYY-MM-DD/<slug>/cover-source-v1.png
 source_width: 0
 source_height: 0
 source_sha256: ""
-prompt_path: assets/cover-prompt.md
+prompt_path: evidence/cover-prompt.md
 final_path: assets/YYYY-MM-DD/<slug>/cover.png
 final_sha256: ""
 width: 0

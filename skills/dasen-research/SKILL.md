@@ -3,7 +3,7 @@ name: dasen-research
 description: Gather sourced facts, timely information, and platform evidence for a content brief. Run only when routed by dasen-content or explicitly requested. Reuse suitable installed Agent Reach, AIHot, or authorized Bitbook context; otherwise use native retrieval, official sources, or supplied material. Write sources.md and its gate; do not draft the article.
 license: MIT
 metadata:
-  version: 3.0.0
+  version: 4.0.0
   invocation: router-or-explicit
   compatibility: Requires Python 3.10+. Online research needs either a harness-native web capability or an optional installed backend; user-provided files and URLs remain valid inputs without those integrations.
 ---
@@ -13,8 +13,8 @@ metadata:
 Turn the writing objective into evidence with clear limits. This stage does not write prose or choose its Style.
 
 1. Read the source, safety, and stage contracts in `../dasen-content/references/contracts.md`.
-2. Read `references/platforms.md` and select an actually available backend. Prefer installed Agent Reach or AIHot when appropriate. For authorized first-party meeting context, read `references/bitbook-context.md`; tool installation is not access authorization.
-3. The input is a package's `brief.yaml`; return to `dasen-content` if it is missing. Read scoring only when comparing candidate topics.
+2. Read the package's `brief.yaml`; return to `dasen-content` if it is missing. Before online retrieval, follow [Wiki reuse](references/wiki-reuse.md): inspect the bound Wiki index and relevant pages/origins, record hit/partial/miss/absent, and preserve source provenance. This read does not create or change Wiki pages/raw/logs.
+3. Read `references/platforms.md` and use an actually available backend for remaining evidence gaps or fresh verification. Prefer suitable installed Agent Reach or AIHot. For authorized meeting context, read `references/bitbook-context.md`. Read scoring only for candidate-topic comparisons.
 
 | Journey | Required work | Optional supplement |
 |---|---|---|
@@ -35,6 +35,7 @@ single_source: false
 sources:
   - id: S1
     type: primary | official | first-party | independent | secondary | data
+    purpose: fact # or structure; structural references do not count as factual sources
     title: ""
     author: ""
     url: "https://..."
@@ -54,4 +55,6 @@ Insufficient evidence sets the brief to `blocked`, or prompts a narrower length/
 
 Only when requested, read `references/scoring.md` and `references/output-template.md`, then compare 3–5 candidates with audience/scenario, deliverable, evidence, timeliness/risk, recommended journey/length/method, and project/series relationship. Do not create styled headlines or a fixed five-part outline at this stage.
 
-Finish with real sources, the compiled threshold met, and unconfirmed facts listed separately. Set `status: sourced` on success; otherwise record the blocker. Append a Research Gate containing source count, time window, single-source status, and actual backend. Record any offline fallback or missing retrieval capability explicitly.
+At delivery, propose only genuinely reusable materials as one pending-ingest batch in sources.md. Persistent raw/pages need a confirmed batch or an existing explicit source-scope authorization; ordinary writing does not authorize ingestion.
+
+Finish with real sources, the compiled threshold met, and unconfirmed facts listed separately. Set `status: sourced` on success; otherwise record the blocker. Append a Research Gate containing source count, time window, single-source status, actual backend, and Wiki hit/partial/miss/absent plus adopted source IDs. Record any offline fallback or missing retrieval capability explicitly.

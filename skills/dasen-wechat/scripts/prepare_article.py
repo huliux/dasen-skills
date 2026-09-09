@@ -15,6 +15,7 @@ import yaml
 CONTENT_SCRIPTS = Path(__file__).resolve().parents[2] / "dasen-content" / "scripts"
 sys.path.insert(0, str(CONTENT_SCRIPTS))
 
+from content_paths import bundle_root
 from project_config import channel_config, load_project_reference  # noqa: E402
 
 
@@ -38,14 +39,10 @@ def load_bundle_config(bundle: Path) -> tuple[Path, dict, dict]:
     brief = yaml.safe_load((bundle / "brief.yaml").read_text(encoding="utf-8")) or {}
     if "project_root" in brief:
         raise SystemExit("project_root was renamed to workspace_root; run migrate_config.py")
-    root_ref = str(brief.get("workspace_root") or "").strip()
-    if root_ref:
-        raw_root = Path(root_ref)
-        root = (bundle / raw_root).resolve() if not raw_root.is_absolute() else raw_root
-        if raw_root.is_absolute() or not bundle.is_relative_to(root):
-            raise SystemExit("workspace_root must be a workspace-ancestor relative path")
-    else:
-        root = workspace_root_for(bundle)
+    try:
+        root = bundle_root(bundle, brief)
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
     project_ref = str(brief.get("project_file") or "").strip()
     project = {}
     if project_ref:

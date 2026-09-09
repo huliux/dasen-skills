@@ -63,12 +63,12 @@ class FollowGuideTests(unittest.TestCase):
         body = prefix + html + "\n\n记录已核验的操作步骤与结果。\n" + suffix
         self.article.write_text(examples.dump_frontmatter(self.meta, body))
 
-    def check(self, *errors: str) -> str:
+    def check(self, *errors: str, stage: str = "render") -> str:
         # Every invocation also proves project/brief/record/other fixture files stay untouched.
         before = {p.relative_to(self.root): p.read_bytes() for p in self.root.rglob("*") if p.is_file()}
         result = examples.run(
             sys.executable, str(examples.PREFLIGHT), "--bundle", str(self.bundle),
-            "--stage", "draft", cwd=self.root,
+            "--stage", stage, cwd=self.root,
         )
         after = {p.relative_to(self.root): p.read_bytes() for p in self.root.rglob("*") if p.is_file()}
         self.assertEqual(before, after, "read-only preflight changed fixture files")
@@ -76,6 +76,10 @@ class FollowGuideTests(unittest.TestCase):
         for error in errors:
             self.assertIn(error, result.stdout)
         return result.stdout
+
+    def test_plain_writing_does_not_require_platform_component(self) -> None:
+        self.write_article("")
+        self.check(stage="draft")
 
     def test_current_png_passes(self) -> None:
         self.check()

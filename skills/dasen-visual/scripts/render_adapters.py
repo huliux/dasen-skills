@@ -582,7 +582,7 @@ def main() -> int:
     parser.add_argument("--brief", required=True, type=Path)
     parser.add_argument("--role", required=True, choices=("body", "cover"))
     parser.add_argument("--method", choices=("auto", *sorted(METHODS)))
-    parser.add_argument("--visual-plan", type=Path, help="compile one asset from assets/visual-plan.yaml")
+    parser.add_argument("--visual-plan", type=Path, help="compile one asset from evidence/visual-plan.yaml (legacy: assets/)")
     parser.add_argument("--asset-id", help="body shot ID; omitted only when the plan has one body shot")
     args = parser.parse_args()
     brief = _load_yaml(args.brief, "--brief")

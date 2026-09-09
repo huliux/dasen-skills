@@ -3,7 +3,7 @@ name: dasen-visual
 description: Find, capture, reuse, or create traceable visuals for a content package. Run only when routed by dasen-content or explicitly requested. Match assets to brief/article/sources using official or web images, task screenshots, user assets, or explanatory graphics. Do not default to image generation or inject products/author identity.
 license: MIT
 metadata:
-  version: 4.0.0
+  version: 5.0.0
   invocation: router-or-explicit
   compatibility: Shot lists work in any text runtime. Project receipt helpers require Python 3.10+ and PyYAML. Image generation requires an available image-generation tool; screenshot and asset checks require local file access.
 ---
@@ -38,7 +38,7 @@ Immediately save an untouched project copy of each non-created candidate. Record
 
 ## Workflow
 
-Project identity exploration follows its reference and project asset records, not article gates. Before prose stabilizes, provisional planning may remain in conversation. Write final `assets/visual-plan.yaml` and run Asset Check only after reading stable prose.
+Project identity exploration follows its reference and project asset records, not article gates. Before prose stabilizes, provisional planning may remain in conversation. Write final `evidence/visual-plan.yaml` and run Asset Check only after reading stable prose.
 
 1. Identify useful results, steps, comparisons, data, and limits. Give each anchor a job and one-sentence purpose; understanding determines the count.
 2. Select relevant existing/user/captured assets first; create only when necessary for the task. Style governs created pixels and surrounding captions/layout, not existing image pixels.
@@ -49,7 +49,7 @@ Project identity exploration follows its reference and project asset records, no
 7. Check capture scope. Public/current-task pages may be captured; private authenticated pages, communications, and unrelated windows need explicit authorization. Remove secrets, contact details, chats, and customer data before incorporation; record cropping/redaction.
 8. Preserve user assets, checking original SHA-256 and dimensions. Derive only when requested or required for platform acceptance, retaining the original.
 9. If this request requires human cover confirmation, show the final local image before remote storage upload or draft overwrite.
-10. Save image binaries beneath frozen `<assets.root>/YYYY-MM-DD/<slug>/` (standalone defaults to workspace `assets/`). Package `assets/` contains textual plans/prompts/manifests. Record paths, sources, treatments, and review state in `record.md > Asset Check`.
+10. Save image binaries beneath frozen `<assets.root>/YYYY-MM-DD/<slug>/` (standalone defaults to content-root `assets/`). Package `evidence/` contains textual plans/prompts/manifests. Record paths, sources, treatments, and review state in `record.md > Asset Check`.
 
 ## Private Styles and identity
 

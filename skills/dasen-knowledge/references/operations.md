@@ -1,6 +1,6 @@
 # Knowledge operation contracts
 
-This file owns operation/provenance behavior. Page fields and directory structure are owned by the consumer's wiki/schema.md.
+This file owns operation/provenance behavior. The core fields, five page directories and index sections are defined in templates/schema.md and enforced by wiki_lint.py. Consumer wiki/schema.md adds subject scope and optional fields without redefining those core contracts.
 
 ## Common safety and provenance
 
@@ -22,7 +22,7 @@ Completion requires valid changed-page frontmatter, nonempty provenance, unique 
 
 ## Query
 
-Use the question and optional type/tag/time constraints. Read index summaries, choose candidates, then inspect candidates/evidence. Return page-linked answers with conflicts/gaps. Page/index writes default to zero; append a sanitized query log. Persist an answer and lint only on explicit request. Reusable analysis is not silently written back; synthesis uses explicit reflect.
+Use the question and optional type/tag/time constraints. Read index summaries, choose candidates, then inspect candidates/evidence. Return page-linked answers with conflicts/gaps. Page/index writes default to zero. Explicit knowledge queries append a sanitized query log; research reuse instead records its outcome in the article Research Gate without changing any Wiki files. Persist an answer and lint only on explicit request. Reusable analysis is not silently written back; synthesis uses explicit reflect.
 
 Substantive conclusions need wiki citations; unsupported portions remain unknown. An index miss suggests research/ingest without hidden online work. Logs contain existing topic slugs, page count, and hit/partial/miss/private-query only, not full questions/answers/excerpts/personal names/URL queries.
 

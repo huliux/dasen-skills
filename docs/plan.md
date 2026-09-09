@@ -20,3 +20,11 @@ Remaining platform and content testing can come through Issues and PRs; it need 
 - Shared-resource cleanup currently inventories and retains files. Deletion needs stronger active-use evidence before implementation.
 
 Implemented boundaries and scoped results are summarized in [local installation evidence](evidence/installation-readiness.md) and [host evidence](evidence/project-bindings.md). Stable support claims retain the mandatory acceptance matrix in spec. Deferred work does not authorize automatic paid runs, account writes, or additional features.
+
+## Content layout and research integration
+
+The confirmed contract is implemented in spec §14: three native white themes, layout-2 evidence paths with legacy state preservation, bounded content roots, and Wiki-first research with original-source counting. See [scoped evidence](evidence/content-layout.md). Broader model editorial acceptance and real mobile/platform delivery remain outside this local change's evidence.
+
+The first simplified theme designs were superseded by the owner-selected Bear/Lark/Typo conversion. Renderer fidelity fixes and local acceptance are recorded in the scoped evidence above; cross-platform pixel equivalence is not claimed.
+
+Shared body-image caption styling is implemented for all three themes; explicit captions are grouped in figure/figcaption during formatting, without reclassifying ordinary paragraphs.

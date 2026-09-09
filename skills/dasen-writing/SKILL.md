@@ -3,7 +3,7 @@ name: dasen-writing
 description: Write or revise sourced Chinese non-fiction from brief.yaml and sources.md. Run only when routed by dasen-content or explicitly requested. Follow the frozen writing Style, produce article.md, and run prose checks. Extract a private project Style from authorized samples only on explicit request; do not retrieve sources, create visuals, or publish.
 license: MIT
 metadata:
-  version: 3.0.0
+  version: 3.0.1
   invocation: router-or-explicit
   compatibility: Requires Python 3.10+. Non-fiction research requires dasen-research or equivalent source files.
 ---
@@ -50,3 +50,5 @@ python <skills-dir>/dasen-writing/scripts/check_prose.py writing/YYYY-MM-DD/<slu
 Clear every `ERROR`. Review each `WARN` in context and record why it remains or revise it; the checker identifies candidates, not editorial truth. Remove placeholders. On success set `drafted` and append Style ID/revision, word count, source count, checks, and revision rounds to record.
 
 Completion requires traceable key facts, no fabricated experiences/quotes/tests, the promised outcome within the requested length, meaningful paragraph progression, visible limitations, complete publication fields/components, and reviewable checks. Record unresolved risks as blockers. If the user requested only prose, show only the prose rather than internal claim maps or review drafts.
+
+Text-only completion uses article.md, sources.md and the actual Writing Preflight/Delivery receipts. HTML rendering and Asset Check belong only to requested platform/visual work routed by dasen-content.

@@ -19,6 +19,7 @@ import yaml
 
 CONTENT_SCRIPTS = Path(__file__).resolve().parents[2] / "dasen-content" / "scripts"
 sys.path.insert(0, str(CONTENT_SCRIPTS))
+from content_paths import control_reference, evidence_dir, select_content_root
 from project_config import assets_config, load_project_reference, visual_config  # noqa: E402
 
 
@@ -124,10 +125,10 @@ def finalize_cover_receipt(
     bundle = bundle.resolve()
     if not bundle.is_relative_to(root):
         raise ValueError("内容包必须位于项目根目录内")
-    manifest_path = bundle / "assets" / "cover.yaml"
+    manifest_path = evidence_dir(bundle) / "cover.yaml"
     record_path = bundle / "record.md"
     if not manifest_path.is_file() or not record_path.is_file():
-        raise ValueError("内容包缺 assets/cover.yaml 或 record.md")
+        raise ValueError("内容包缺审计目录中的 cover.yaml 或 record.md")
     manifest = yaml.safe_load(manifest_path.read_text(encoding="utf-8")) or {}
     if not isinstance(manifest, dict):
         raise ValueError("cover.yaml 顶层必须是对象")
@@ -153,8 +154,10 @@ def finalize_cover_receipt(
 
 
 def _project(args: argparse.Namespace) -> tuple[Path, dict[str, Any]]:
-    root = Path.cwd().resolve()
-    _, project = load_project_reference(args.project_file, root)
+    workspace = Path.cwd().resolve()
+    root = select_content_root(workspace, project_file=args.project_file)
+    reference = control_reference(workspace, root, args.project_file)
+    _, project = load_project_reference(reference, root)
     return root, project
 
 

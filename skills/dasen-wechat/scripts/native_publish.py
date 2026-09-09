@@ -24,6 +24,7 @@ import yaml
 CONTENT_SCRIPTS = Path(__file__).resolve().parents[2] / "dasen-content" / "scripts"
 sys.path.insert(0, str(CONTENT_SCRIPTS))
 
+from content_paths import evidence_dir
 from project_config import assets_config  # noqa: E402
 
 from native_renderer import load_article_text, load_theme, render_markdown
@@ -366,7 +367,7 @@ def main(argv: Iterable[str] | None = None) -> int:
         print(f"- highlight: {DEFAULT_HIGHLIGHT}")
         return 0
 
-    delivery_state = bundle / "assets" / "delivery.json" if bundle is not None else None
+    delivery_state = evidence_dir(bundle, brief) / "delivery.json" if bundle is not None else None
     if args.resolve_media_id or args.abandon_pending:
         if bundle is None or delivery_state is None:
             raise RuntimeError("delivery recovery requires content-bundle mode")

@@ -1,0 +1,54 @@
+# Adapted from the user-selected MWeb theme; see NOTICE.md for attribution and licenses.
+schema_version: 1
+id: dasen-document
+description: MWeb Lark · supplied palette, blue emphasis variant
+legacy_aliases:
+- mweb-lark
+styles:
+  root_first: "margin-top:0;"
+  img: max-width:100%;height:auto;border:0;
+  figure: margin:0.75em 0;text-align:center;
+  figcaption: margin:8px 0 0;font-size:14px;line-height:1.5;font-weight:400;color:#999999;text-align:center;
+  em: font-style:italic;
+  ul: margin:8px 0;padding:0 0 0 22px;list-style-type:disc;
+  ol: margin:8px 0;padding:0 0 0 22px;list-style-type:decimal;
+  li: margin:4px 0 0;
+  nested_ul: margin:0.25em 0 0 2em;list-style-type:circle;
+  nested_ol: margin:0.25em 0 0 2em;
+  blockquote_p: margin:0;
+  code_toolbar: display:none;
+  pre_code: font-family:inherit;font-size:inherit;line-height:inherit;tab-size:4;
+  sub: font-size:75%;vertical-align:sub;line-height:0;
+  sup: font-size:75%;vertical-align:super;line-height:0;
+  root: box-sizing:border-box;max-width:838.4px;margin:0 auto;padding:25.6px 51.2px;font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Arial,'Segoe UI','PingFang SC','Microsoft Yahei','Hiragino Sans GB',sans-serif;font-size:16px;line-height:1.68;color:#1f2329;background-color:#ffffff;word-wrap:break-word;
+  p: margin:8px 0;line-height:1.68;
+  strong: font-weight:bold;color:#245bdb;
+  a: color:#3370ff;text-decoration:none;word-break:break-word;
+  blockquote: 'display:block;margin:8px 0;padding:0 0 0 14px;border-left:2px solid #3370ff;color:rgba(31,35,41,0.7);'
+  code: 'font-family:Menlo-Regular,Menlo,Monaco,Consolas,''Courier New'',monospace;border-radius:4px;margin:0 2px;border:1px solid #dee0e3;background-color:#f5f6f7;line-height:1.6;padding:0 2px;'
+  code_container: margin:8px 0;
+  pre: 'margin:0;padding:10px;font-family:Menlo-Regular,Menlo,Monaco,Consolas,''Courier New'',monospace;font-size:14px;line-height:1.6;border:1px solid #dee0e3;border-radius:0;background-color:#f5f6f7;overflow-x:auto;white-space:pre;word-break:normal;'
+  table: max-width:100%;margin:8px 0;border-collapse:collapse;border-spacing:2px;font-size:1em;background-color:#ffffff;
+  hr: margin:13px 0 12px;border:0;height:1px;background-color:#bbbfc4;
+  mark: padding:0.2em 0;background-color:rgba(255,246,122,0.8);
+  th: 'padding:8px;font-size:16px;font-weight:500;border:1px solid #dee0e3;text-align:left;'
+  td: 'padding:8px;font-size:16px;font-weight:normal;border:1px solid #dee0e3;text-align:left;'
+  h1: margin:1em 0 0.37em;font-size:26px;font-weight:500;line-height:1.4;
+  h2: margin:1em 0 0.37em;font-size:22px;font-weight:500;line-height:1.4;
+  h3: margin:1em 0 0.37em;font-size:20px;font-weight:500;line-height:1.4;
+  h4: margin:1em 0 0.37em;font-size:18px;font-weight:500;line-height:1.4;
+  h5: margin:1em 0 0.37em;font-size:16px;font-weight:500;line-height:1.4;
+  h6: margin:1em 0 0.37em;font-size:16px;font-weight:500;line-height:1.4;
+  syntax_keyword: color:#0077aa;
+  syntax_comment: color:#708090;
+  syntax_number: color:#990055;
+  syntax_string: color:#669900;
+  syntax_attribute: color:#669900;
+  syntax_operator: color:#9a6e3a;
+  syntax_function: color:#dd4a68;
+  syntax_variable: color:#ee9900;
+  syntax_tag: color:#990055;
+  figure_img: display:block;margin-left:auto;margin-right:auto;
+  figcaption_p: margin:0;font-size:inherit;line-height:inherit;color:inherit;text-align:center;
+  figcaption_a: font-size:inherit;color:inherit;
+  figcaption_strong: font-size:inherit;color:inherit;

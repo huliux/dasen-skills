@@ -1,0 +1,54 @@
+# Adapted from the user-selected MWeb theme; see NOTICE.md for attribution and licenses.
+schema_version: 1
+id: dasen-reading
+description: MWeb Typo · supplied Typo.css and code palette
+legacy_aliases:
+- mweb-typo
+styles:
+  img: max-width:100%;height:auto;border:0;
+  figure: margin:0.75em 0;text-align:center;
+  figcaption: margin:8px 0 0;font-size:16.2px;line-height:1.5;font-weight:400;color:#999999;text-align:center;
+  em: font-style:normal;font-weight:inherit;color:#000000;
+  ul: margin:0 0 1.2em 1.3em;padding:0;list-style-type:disc;
+  ol: margin:0 0 1.2em 1.9em;padding:0;list-style-type:decimal;
+  li: margin:0;padding:0;
+  nested_ul: margin:0 0 0.8em 2em;list-style-type:circle;
+  nested_ol: margin:0 0 0.8em 2em;
+  blockquote_p: margin:0;
+  code_toolbar: display:none;
+  pre_code: font-family:inherit;font-size:inherit;line-height:inherit;tab-size:4;
+  sub: font-size:75%;vertical-align:sub;line-height:0;
+  sup: font-size:75%;vertical-align:super;line-height:0;
+  root: box-sizing:border-box;max-width:788px;min-width:200px;margin:0 auto;padding:14px;font-family:'PingFang SC','Lantinghei SC','Microsoft Yahei','Hiragino Sans GB','Microsoft Sans Serif','WenQuanYi Micro Hei',sans-serif;font-size:18.2px;font-weight:300;line-height:1.8;color:#333333;background-color:#ffffff;word-wrap:break-word;
+  p: margin:0 0 1.2em;line-height:1.8;
+  strong: font-weight:bold;color:#000000;
+  a: 'color:#1abc9c;border-bottom:1px solid #1abc9c;text-decoration:none;'
+  blockquote: 'margin:1em 0;padding:0 0 0 1em;border-left:1px solid #1abc9c;color:#999999;font-weight:400;'
+  code: font-family:Courier,'Courier New',monospace;font-weight:400;font-style:normal;
+  code_container: margin:0.5em 0;
+  pre: 'font-family:Consolas,Menlo,Monaco,monospace;font-size:14px;font-weight:400;line-height:1.375;white-space:pre;word-break:normal;margin:0;padding:1em;border:1px solid #dddddd;background-color:#fafbf9;color:#4299d7;overflow-x:auto;'
+  hr: 'border:0;border-bottom:1px solid #cfcfcf;margin:0 0 0.8em;height:10px;'
+  mark: 'background-color:#fffdd1;border-bottom:1px solid #ffedce;padding:2px;'
+  u: text-decoration:underline;
+  table: max-width:100%;margin:0 0 1.2em;border-collapse:collapse;border-spacing:0;
+  th: 'border:1px solid #dddddd;padding:0.5em 1em;color:#666666;background-color:#f1f1f1;font-weight:400;text-align:left;'
+  td: 'border:1px solid #dddddd;padding:0.5em 1em;color:#666666;'
+  h1: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:2em;font-weight:100;line-height:1.35;color:#000000;
+  h2: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:1.8em;font-weight:100;line-height:1.35;color:#000000;
+  h3: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:1.6em;font-weight:100;line-height:1.35;color:#000000;
+  h4: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:1.4em;font-weight:100;line-height:1.35;color:#000000;
+  h5: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:1.2em;font-weight:100;line-height:1.35;color:#000000;
+  h6: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:1.2em;font-weight:100;line-height:1.35;color:#000000;
+  syntax_keyword: color:#277fbe;
+  syntax_comment: color:#bdc3b7;
+  syntax_number: color:#1b6498;
+  syntax_string: color:#277fbe;
+  syntax_attribute: color:#66a329;
+  syntax_operator: color:#1b6498;
+  syntax_function: color:#66a329;
+  syntax_variable: color:#8dcefc;
+  syntax_tag: color:#1b6498;
+  figure_img: display:block;margin-left:auto;margin-right:auto;
+  figcaption_p: margin:0;font-size:inherit;line-height:inherit;color:inherit;text-align:center;
+  figcaption_a: font-size:inherit;color:inherit;
+  figcaption_strong: font-size:inherit;color:inherit;
