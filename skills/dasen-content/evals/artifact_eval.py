@@ -27,7 +27,7 @@ def digest(path: Path) -> str:
 
 def inventory(root: Path) -> dict[str, str]:
     return {
-        str(p.relative_to(root)): digest(p)
+        p.relative_to(root).as_posix(): digest(p)
         for p in sorted(root.rglob("*"))
         if p.is_file() and not (set(p.relative_to(root).parts) & IGNORED)
     }

@@ -17,7 +17,7 @@ from artifact_eval import command_output, digest, read_json, write_json
 
 def full_inventory(root: Path) -> dict[str, str]:
     # Include caches: status-only acceptance really means no workspace writes.
-    return {str(p.relative_to(root)): digest(p) for p in sorted(root.rglob('*')) if p.is_file()}
+    return {p.relative_to(root).as_posix(): digest(p) for p in sorted(root.rglob('*')) if p.is_file()}
 
 
 def run_turn(run: Path, case_id: str, turn: int, model: str, effort: str, timeout: int) -> int:
