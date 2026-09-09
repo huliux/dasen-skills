@@ -1,0 +1,93 @@
+schema_version: 2
+policy:
+  ownership: All Skill source under this repository is original dasen content-operation
+    work.
+  external_skills_and_utilities: External tools and Skills retain their upstream source
+    and installation manager.
+  license: MIT
+skills:
+  dasen-content:
+    ownership: owned
+    lifecycle: stable
+    visibility: public-candidate
+    version: 4.3.3
+    packs:
+    - content-core
+    - content-wechat
+    depends_on: []
+    routes_to:
+    - dasen-research
+    - dasen-writing
+    - dasen-knowledge
+    - dasen-visual
+    - dasen-wechat
+    license: MIT
+  dasen-research:
+    ownership: owned
+    lifecycle: stable
+    visibility: public-candidate
+    version: 3.0.0
+    packs:
+    - content-core
+    - content-wechat
+    depends_on:
+    - dasen-content
+    optional_integrations:
+    - agent-reach
+    - aihot
+    - bitbook
+    license: MIT
+    note: Uses installed integrations when suitable; otherwise falls back to harness-native
+      search, official sources or supplied materials.
+  dasen-writing:
+    ownership: owned
+    lifecycle: stable
+    visibility: public-candidate
+    version: 3.0.0
+    packs:
+    - content-core
+    - content-wechat
+    depends_on:
+    - dasen-content
+    license: MIT
+    note: Independent original dasen non-fiction workflow with data-driven Style IDs;
+      private project styles and persona data are excluded.
+  dasen-knowledge:
+    ownership: owned
+    lifecycle: stable
+    visibility: public-candidate
+    version: 2.0.0
+    packs:
+    - content-wechat
+    - knowledge
+    depends_on:
+    - dasen-content
+    license: MIT
+  dasen-visual:
+    ownership: owned
+    lifecycle: stable
+    visibility: public-candidate
+    version: 4.0.0
+    packs:
+    - content-wechat
+    depends_on:
+    - dasen-content
+    optional_integrations:
+    - agent-reach
+    license: MIT
+    note: Uses installed search capabilities for image discovery when available; otherwise
+      falls back to harness-native search, local capture, user assets or creation.
+  dasen-wechat:
+    ownership: owned
+    lifecycle: stable
+    visibility: public-candidate
+    version: 6.0.0
+    packs:
+    - content-wechat
+    depends_on:
+    - dasen-content
+    - dasen-writing
+    license: MIT
+    note: Original native Markdown renderer, inline theme, image pipeline and WeChat
+      draft client; credential values and locators remain project/device-owned, with
+      no central account defaults.

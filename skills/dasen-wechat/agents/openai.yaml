@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dasen WeChat"
+  short_description: "Local WeChat HTML and authorized draft delivery"
+  default_prompt: "Use $dasen-wechat to export this content package as local WeChat HTML."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dasen Visual"
+  short_description: "Traceable images, screenshots, and explanatory graphics"
+  default_prompt: "Use $dasen-visual to prepare traceable assets for this article."

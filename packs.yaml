@@ -1,0 +1,68 @@
+schema_version: 3
+public_subset:
+  status: candidate
+  license: MIT
+  skills:
+  - dasen-content
+  - dasen-research
+  - dasen-writing
+  - dasen-knowledge
+  - dasen-visual
+  - dasen-wechat
+  excludes:
+  - dasen-video
+  distribution_files:
+  - LICENSE
+  - THIRD_PARTY.md
+  - ORIGIN.md
+  - README.md
+  - README.en.md
+  - INSTALL.md
+  - requirements.txt
+  - prepare-macos.sh
+  - docs/zh-CN/installation.md
+  - docs/zh-CN/compatibility.md
+  - docs/zh-CN/updating.md
+  - docs/en/installation.md
+  - docs/en/compatibility.md
+  - docs/en/updating.md
+  note: Public source includes reviewed engineering; the installation artifact excludes
+    engineering tests and raw evidence. External Skill source is never bundled.
+packs:
+  content-core:
+    skills:
+    - dasen-content
+    - dasen-research
+    - dasen-writing
+    external_tools:
+    - python>=3.10
+    - PyYAML
+    optional_skills:
+    - agent-reach
+    - aihot
+  content-wechat:
+    skills:
+    - dasen-content
+    - dasen-research
+    - dasen-writing
+    - dasen-knowledge
+    - dasen-visual
+    - dasen-wechat
+    external_tools:
+    - python>=3.10
+    - PyYAML
+    - markdown-it-py
+    - Pygments
+    - wechat-official-account-api
+    optional_skills:
+    - agent-reach
+    - aihot
+  knowledge:
+    skills:
+    - dasen-content
+    - dasen-knowledge
+    external_tools:
+    - python>=3.10
+    - PyYAML
+    optional_skills:
+    - agent-reach

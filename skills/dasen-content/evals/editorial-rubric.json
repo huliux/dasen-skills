@@ -1,0 +1,29 @@
+{
+  "suite_id": "integrated-editorial-v1",
+  "dimensions": [
+    "topic",
+    "title",
+    "article",
+    "contract",
+    "delivery"
+  ],
+  "review": "Owner reviews anonymous pairs with sources: A, B, tie, or reject both, with reasons. Model review is auxiliary.",
+  "shared": [
+    "Topic earns reader attention using the raw material, without a preset angle.",
+    "Title attracts the intended reader and its actual promise is fulfilled.",
+    "Article provides supported judgment and useful information without repeated caveats crowding out the substance.",
+    "Distinguish observations, interpretations, and proposed actions; preserve synthetic context.",
+    "Existing source, identity, Style, and local-delivery contracts apply."
+  ],
+  "cases": {
+    "tool-practice": [
+      "Do not claim proven net time savings, deployed refresh, procurement approval, or established acceptance thresholds.",
+      "Use task mix, maintenance constraints and error types to support a useful decision, without treating raw counts as a universal winner."
+    ],
+    "technology-explanation": [
+      "Do not attribute all result differences to architecture when version filtering differs.",
+      "Three selected failed questions are not a full 30-question retest.",
+      "Explain mechanism and the practical implication; avoid a generic checklist or repeating that more evidence is needed."
+    ]
+  }
+}

@@ -1,0 +1,196 @@
+# Distribution-owned Dasen defaults. Content runs persist additions in project writing.style_library.
+schema_version: 1
+styles:
+  practical:
+    label: 实用清晰型
+    revision: 1
+    summary: 直接解决读者任务，以可执行信息、真实结果和适用边界为主。
+    source:
+      kind: dasen-original
+      sample_refs: []
+      captured_at: null
+    voice:
+      - 平实、准确、克制，不用身份感代替论证
+      - 优先回答读者当前要完成的任务
+    rhythm:
+      - 段落短而完整，长短句自然交替
+      - 重点句可以独立成段，但不连续堆口号
+    structure:
+      - 先给问题或结果，再补必要背景
+      - 依次交代做法、检查方法、结果和适用边界
+    evidence:
+      - 判断靠近依据，数字注明对象、时间与口径
+      - 声称跑通时给出可复查的结果或回执
+    avoid:
+      - 空泛开场、功能清单和重复总结
+      - 虚构经历、效果或读者心理
+
+  explainer:
+    label: 深度解释型
+    revision: 1
+    summary: 拆清复杂机制、研究结论或选型逻辑，使读者能复述原理与边界。
+    source:
+      kind: dasen-original
+      sample_refs: []
+      captured_at: null
+    voice:
+      - 严谨但不卖弄术语
+      - 结论明确，证据类型和不确定性透明
+    rhythm:
+      - 解释密度高时用小节、列表或对照降低负担
+      - 专有名词首次出现时紧跟一句普通话解释
+    structure:
+      - 先定义对象、场景和本篇问题
+      - 机制按输入、过程、输出、失败条件展开
+      - 案例按约束、动作、结果、可迁移条件展开
+    evidence:
+      - 公司自述、第三方测量和作者实测分开标注
+      - 对比先固定场景和维度，再展示证据与选择
+    avoid:
+      - 用类比承担事实证明
+      - 未交代条件就给普遍建议
+
+  casual:
+    label: 轻松复盘型
+    revision: 1
+    summary: 用材料中的反差和自然节奏复盘事件，同时保留完整事实标准。
+    source:
+      kind: dasen-original
+      sample_refs: []
+      captured_at: null
+    voice:
+      - 像清醒的同行交流，轻松但不轻佻
+      - 调侃只指向已知事实，不猜人物心理
+    rhythm:
+      - 长短句交替，抽象机制前先放真实场景
+      - 案例过多时保留差异最大的两个
+    structure:
+      - 第一屏放最能说明问题的动作、数字或反差
+      - 正例后保留最有解释力的反例或限制
+    evidence:
+      - 去掉幽默句后，事实链和论证仍然成立
+      - 数字落到具体对象、条件与来源
+    avoid:
+      - 网络用语替代解释
+      - 为制造戏剧性编造对白或场景
+
+  flash:
+    label: 新闻快讯型
+    revision: 1
+    summary: 在信息变化期缩小承诺，快速交付已确认事实、直接影响和未知项。
+    source:
+      kind: dasen-original
+      sample_refs: []
+      captured_at: null
+    voice:
+      - 快、准、透明，不抢跑预测
+      - 明确区分官方宣布、独立证据和作者判断
+    rhythm:
+      - 短段落承载单一事实或影响
+      - 不用换词重复拉长篇幅
+    structure:
+      - 先写主体在什么时间发生或公布了什么
+      - 再写关键事实、读者关系、未知项和下一核验信号
+    evidence:
+      - 正文或来源说明标出 checked_at
+      - 单一官方来源只支撑官方已经宣布的范围
+    avoid:
+      - 把未确认效果写成结论
+      - 在信息不足时强行升格为行业趋势
+
+  tutorial:
+    label: 实操教程型
+    revision: 1
+    summary: 带读者从入口和前置条件走到可检查的实际结果。
+    source:
+      kind: dasen-original
+      sample_refs: []
+      captured_at: null
+    voice:
+      - 像在旁边协作，说明为什么做而不只报按钮名称
+      - 对权限、费用、版本和失败风险保持透明
+    rhythm:
+      - 每一步只推进一个动作，必要命令与检查结果就近出现
+      - 主流程连续，分支和排错放在对应步骤之后
+    structure:
+      - 先给最终产物、适用对象和必要准备
+      - 按获取、配置、执行、验收、排错和清理组织
+      - 安装成功与端到端任务跑通分别验收
+    evidence:
+      - 易变入口、版本和权限使用当前来源
+      - 真实运行结果注明环境、时间和检查方法
+    avoid:
+      - 把 Agent 能完成的机械步骤全部推给读者
+      - 省略前置条件、失败分支或结果验收
+
+  human-natural:
+    label: 自然人味型
+    revision: 1
+    summary: 在事实不变的前提下保留具体观察、自然语序和有取舍的表达。
+    source:
+      kind: dasen-original
+      sample_refs: []
+      captured_at: null
+    voice:
+      - 从具体材料和真实问题出发，允许有克制的判断与犹豫
+      - 用准确的日常中文，不刻意展示写作技巧
+    rhythm:
+      - 句长和段长随信息变化，不追求机械整齐
+      - 转折由意思推动，不批量使用连接词
+    structure:
+      - 保留材料最有辨识度的观察顺序
+      - 需要时先讲局部再归纳，不强套固定总分总
+    evidence:
+      - 个人经历只来自 brief 已验证材料
+      - 具体细节服务于事实、解释或判断
+    avoid:
+      - 固定金句、假想对话和虚构亲历
+      - 模板化升华、同义反复和过度顺滑的套话
+
+  energetic-tech-commentary:
+    label: 高能科技评论型
+    revision: 1
+    summary: 用强节奏和鲜明判断解释科技事件，但不模仿具体作者或借用其身份口癖。
+    source:
+      kind: dasen-original
+      sample_refs: []
+      captured_at: null
+    voice:
+      - 有态度、有兴奋点，判断仍然接受证据约束
+      - 把技术变化翻译成读者能感知的影响
+    rhythm:
+      - 短句推进关键变化，长句负责解释原因和限制
+      - 高能句之间保留信息段，避免全篇持续喊话
+    structure:
+      - 从最反常或最有影响的变化切入
+      - 展示事实后解释机制，再给判断、代价和下一观察点
+    evidence:
+      - 强判断必须能回到来源或明确标为推论
+      - 产品演示、官方自述和真实使用效果分开
+    avoid:
+      - 复刻任何作者的口头禅、称谓或独特比喻
+      - 用夸张、粗口或情绪掩盖证据缺口
+
+  concise-business-commentary:
+    label: 克制商业短评型
+    revision: 1
+    summary: 用少量关键数据和清楚因果给出商业判断，篇幅由 brief 决定。
+    source:
+      kind: dasen-original
+      sample_refs: []
+      captured_at: null
+    voice:
+      - 冷静、明确、少修饰
+      - 区分事实、推论和立场
+    rhythm:
+      - 一段一个判断或证据，删去不改变结论的铺垫
+      - 数字之后立即解释其商业含义
+    structure:
+      - 先给事件与关键数字
+      - 再写驱动因素、利益相关者、约束与结论
+    evidence:
+      - 数据写清期间、样本、币种或比较基准
+      - 因果证据不足时只写相关性和待验证假设
+    avoid:
+      - 用人物崇拜或行业黑话代替分析
+      - 把短篇风格误写成固定字数或固定格式

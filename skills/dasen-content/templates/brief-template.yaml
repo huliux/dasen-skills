@@ -1,0 +1,94 @@
+schema_version: 3
+id: YYYY-MM-DD-topic-slug
+configuration: standalone
+brand:
+  name: null
+  aliases: []
+journey: series
+length: deep
+method: original
+platform: generic
+project: null
+project_file: null
+workspace_root: null
+video_project_file: null
+video_style_file: null
+series: null
+series_file: null
+profile: null
+style_profile: {}
+visual:
+  selection: {mode: default, reason: null}
+  body:
+    style_id: body-clean-editorial
+    style: {}
+    render_method: auto
+  cover:
+    style_id: cover-clean-editorial
+    style: {}
+    render_method: auto
+    reference: null
+  cover_size: null
+  layout_library: null
+  generation: {required: false, provider: none, model: null, endpoint: null, options: {}}
+image_policy: local
+response_stage: null
+status: brief
+
+objective: ""
+audience: ""
+deliverable: ""
+topic_label: null
+deadline: null
+checked_at: null
+
+requirements:
+  must_include: []       # 语义要求，由写作/人工判断
+  required_phrases: []   # 必须逐字出现，preflight 自动检查
+  avoid: []              # 语义禁区，由写作/人工判断
+  forbidden_phrases: []  # 不得逐字出现，preflight 自动检查
+  tone: null
+
+word_count:
+  min: null
+  max: null
+
+source_policy:
+  minimum: null
+  primary_required: false
+  second_source_preferred: true
+
+pattern_reference:
+  url: null
+  borrow: []
+  avoid_copying:
+    - original-wording
+    - personal-experience
+    - unique-metaphors
+    - signature-catchphrases
+
+product_placement:
+  enabled: false
+  product_name: null
+  aliases: []
+  mode: soft
+  max_ratio: 0.05
+  required_facts: []
+
+author_persona:
+  enabled: false
+  profile_id: null
+  name: null
+  contacts: []
+  uses: []
+  verified_experiences: []
+
+title_policy:
+  min: null
+  max: null
+  forbidden_characters: []
+
+channel: {}
+
+blocker: null
+resume_from: null
