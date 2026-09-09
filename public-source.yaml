@@ -26,6 +26,7 @@ files:
   - scripts/package_release.py
   - tests/test_distribution.py
   - tests/test_package_release.py
+  - tests/test_validation.py
   - tests/test_install_check.py
   - tests/test_prepare_runtime.py
   - tests/test_project_install.py

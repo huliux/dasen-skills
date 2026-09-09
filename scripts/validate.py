@@ -31,6 +31,28 @@ def frontmatter(path: Path) -> dict:
     return data
 
 
+def validate_shell_scripts(scripts: list[Path]) -> list[str]:
+    bash = shutil.which("bash")
+    if not bash:
+        print("NOTE: bash syntax checks unavailable; Python entry points remain usable")
+        return []
+    # A Windows WSL launcher can exist without an installed Linux distribution.
+    probe = subprocess.run([bash, "--version"], capture_output=True, text=True)
+    if probe.returncode:
+        print("NOTE: detected bash is not usable; shell syntax remains unverified here")
+        return []
+    errors = []
+    for script in scripts:
+        proc = subprocess.run(
+            [bash, "-n"], input=script.read_text(encoding="utf-8"),
+            capture_output=True, text=True, encoding="utf-8",
+        )
+        if proc.returncode:
+            detail = (proc.stderr or proc.stdout).strip()
+            errors.append(f"bash syntax: {script.relative_to(ROOT)}: {detail}")
+    return errors
+
+
 def main() -> int:
     errors: list[str] = []
     registry = yaml.safe_load((ROOT / "registry.yaml").read_text(encoding="utf-8"))
@@ -131,13 +153,7 @@ def main() -> int:
         proc = subprocess.run([sys.executable, "-m", "py_compile", str(script)], capture_output=True, text=True)
         if proc.returncode:
             errors.append(f"python syntax: {script.relative_to(ROOT)}: {proc.stderr.strip()}")
-    shell_scripts = list(SKILLS.rglob("*.sh"))
-    if shell_scripts and not shutil.which("bash"):
-        print("NOTE: bash syntax checks unavailable; Python entry points remain usable")
-    for script in shell_scripts if shutil.which("bash") else []:
-        proc = subprocess.run(["bash", "-n", str(script)], capture_output=True, text=True)
-        if proc.returncode:
-            errors.append(f"bash syntax: {script.relative_to(ROOT)}: {proc.stderr.strip()}")
+    errors.extend(validate_shell_scripts(list(SKILLS.rglob("*.sh"))))
 
     if errors:
         print("FAIL")
