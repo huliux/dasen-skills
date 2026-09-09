@@ -28,3 +28,7 @@ Baseline aec41ed reproduced two renderer defects: border-collapse/border-spacing
 - Browser inspection of the same synthetic article: three 375px previews and full-width pages passed local visual checks. All images decoded; tables computed to border-collapse:collapse; code computed to 14.4px (Bear), 14px (Lark), and 14px (Typo). Bear desktop border-box measured 838.4px with 25.6px/51.2px padding.
 - One fresh offline model case, declared 180-second limit, gpt-6-astra/medium: completed in 128.33s. It produced the three requested native HTML files, preserved the source/image and Skill snapshot, and wrote a truthful static-check receipt. Contract and local structural delivery PASS; model-session visual acceptance PARTIAL because its sandbox prevented browser launch. The maintainer browser checks above are separate evidence, not attributed to that model session.
 - No platform delivery or phone preview. Private source snapshots, model traces and local Asset Check retain the exact outputs and hashes.
+
+## Shared caption styling
+
+All three figure captions now use body size minus 2 CSS px, #999999, an 8px image gap and shared center alignment. At 375px browser preview width, Bear/Lark computed to 14px and Typo to 16.2px; image/caption center differences were 0px and images decoded successfully. Ordinary following paragraphs remained body text. Existing renderer checks, all 302 tests, examples 35/35 and export/structure checks passed. The targeted model sample and visual Asset Check are retained privately; phone acceptance is still separate.

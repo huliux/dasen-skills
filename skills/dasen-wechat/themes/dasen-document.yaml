@@ -7,8 +7,8 @@ legacy_aliases:
 styles:
   root_first: "margin-top:0;"
   img: max-width:100%;height:auto;border:0;
-  figure: margin:0.75em 0;
-  figcaption: text-align:center;font-size:0.9em;color:#888888;
+  figure: margin:0.75em 0;text-align:center;
+  figcaption: margin:8px 0 0;font-size:14px;line-height:1.5;font-weight:400;color:#999999;text-align:center;
   em: font-style:italic;
   ul: margin:8px 0;padding:0 0 0 22px;list-style-type:disc;
   ol: margin:8px 0;padding:0 0 0 22px;list-style-type:decimal;
@@ -48,3 +48,7 @@ styles:
   syntax_function: color:#dd4a68;
   syntax_variable: color:#ee9900;
   syntax_tag: color:#990055;
+  figure_img: display:block;margin-left:auto;margin-right:auto;
+  figcaption_p: margin:0;font-size:inherit;line-height:inherit;color:inherit;text-align:center;
+  figcaption_a: font-size:inherit;color:inherit;
+  figcaption_strong: font-size:inherit;color:inherit;

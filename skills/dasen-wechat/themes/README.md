@@ -19,3 +19,7 @@ Safe static equivalents replace dynamic page styling: lists use semantic browser
 The renderer preserves border collapse/spacing and list properties, applies nested quote/list rules, and separates block-code styling from inline code. Theme code sizes and token colors are honored; toolbar decoration is opt-in. Keep scripts, unsafe URLs and CSS URL/expression rules filtered.
 
 Acceptance compares the same Markdown at mobile and desktop widths, verifies decoded images and actual table/code/heading styles, and retains a real local Asset Check. HTML validity alone is insufficient visual evidence. Phone rendering and remote draft receipts remain separate.
+
+## Body-image captions
+
+All three themes center a figure's image and caption on the same content axis. Captions use #999999, normal weight, 1.5 line height and an 8px gap below the image. The owner's “two sizes smaller” is implemented as body size minus 2 CSS px: 14px for Bear/Lark and 16.2px for Typo. This shared caption rule intentionally overrides the original theme caption styling. Authoring markup and caption identification belong to [the platform contract](../references/platform.md#body-image-captions).

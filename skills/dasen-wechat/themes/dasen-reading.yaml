@@ -6,8 +6,8 @@ legacy_aliases:
 - mweb-typo
 styles:
   img: max-width:100%;height:auto;border:0;
-  figure: margin:0;padding:0;
-  figcaption: font-size:0.9em;color:#888888;
+  figure: margin:0.75em 0;text-align:center;
+  figcaption: margin:8px 0 0;font-size:16.2px;line-height:1.5;font-weight:400;color:#999999;text-align:center;
   em: font-style:normal;font-weight:inherit;color:#000000;
   ul: margin:0 0 1.2em 1.3em;padding:0;list-style-type:disc;
   ol: margin:0 0 1.2em 1.9em;padding:0;list-style-type:decimal;
@@ -48,3 +48,7 @@ styles:
   syntax_function: color:#66a329;
   syntax_variable: color:#8dcefc;
   syntax_tag: color:#1b6498;
+  figure_img: display:block;margin-left:auto;margin-right:auto;
+  figcaption_p: margin:0;font-size:inherit;line-height:inherit;color:inherit;text-align:center;
+  figcaption_a: font-size:inherit;color:inherit;
+  figcaption_strong: font-size:inherit;color:inherit;

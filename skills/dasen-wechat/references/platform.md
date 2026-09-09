@@ -26,11 +26,24 @@ Runtime accepts only local/platform-upload/stable-cdn; wenyan-upload is migratio
 
 ## Theme, HTML, code, and links
 
-The three white-background themes are listed in [themes](../themes/README.md). Default remains themes/dasen-default.yaml; syntax palette is dasen-light. Theme data is a restricted tag-to-inline-style mapping: no arbitrary CSS execution, remote theme loading, or external renderer selectors. A new public theme needs original independent naming/tokens and a real Markdown fingerprint test. Temporary project styling is not a public default. Legacy theme names use explicit migration, not parallel runtime aliases.
+Use the three [MWeb theme adaptations](../themes/README.md), including their selection names, compatible IDs, metrics and conversion boundaries. Theme data maps safe tags/context to inline styles; no external renderer or CSS execution is introduced. Explicit project component dimensions can override defaults. The safe tag stack prevents stray closing tags escaping the root; event handlers, scripts, forms, iframes, CSS URLs and dangerous protocols remain filtered.
 
-Current visual baseline is body 16px/1.6, undecorated headings, max-width 100% images, fixed-layout tables, horizontally scrolling code, and low-contrast separators. The safe tag stack prevents stray closing tags from escaping the root. Remove event handlers, scripts, forms, iframes, CSS URLs, and dangerous protocols. Explicit project component dimensions may override theme defaults.
+Pygments tokenizes fenced code using the selected theme's palette and block-code metrics; unknown languages become plain text. Markdown links remain ordinary anchors, without automatic endnotes. Facts remain in sources/record.
 
-Pygments tokenizes fenced code with the built-in palette; unknown languages become plain text. The renderer owns code-window/background/line-height/scroll styling without external CSS. Markdown links remain ordinary anchors, without automatic endnotes. Facts remain in sources/record. Unsafe or parser-rejected URLs do not become clickable hrefs.
+### Body-image captions
+
+When formatting supplied body images with explanatory captions, group each image and its actual caption in a figure, placing figcaption directly below the image:
+
+```html
+<figure>
+<img src="../../../assets/YYYY-MM-DD/slug/result.png" alt="结果截图" />
+<figcaption>配图说明：本次结果仅代表所列测试条件。</figcaption>
+</figure>
+```
+
+Use the existing explanation verbatim. Convert a clearly identified image explanation into this markup in the formatting copy; retain source Markdown and image URLs. Alt text remains accessibility text, not an automatic visible caption. A following ordinary paragraph is not a caption unless its role is explicit. Do not invent explanations for images without supplied captions. Fixed project UI icons and cover media are outside body-figure formatting.
+
+The three themes apply the shared [caption styles](../themes/README.md#body-image-captions). Check the rendered image and caption share the horizontal center, the caption is below the image, and its computed font size is 2px below the body with #999999 text. Preserve caption text and local/CDN image references in the Asset Check.
 
 ## API and credentials
 

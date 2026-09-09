@@ -74,3 +74,5 @@ Offer three white, simple native HTML themes, differentiated by reading density 
 ### Theme fidelity correction (2026-09-09)
 
 The owner rejected the simplified native theme appearance and supplied MWeb Bear, Lark and Typo rules. Convert these selected styles through the native renderer, retaining their effective typography, spacing, colors and notices. Correct renderer properties that discard or override them; do not substitute another loosely inspired design.
+
+All three themes share centered body-image captions: 2 CSS px smaller than body text, light gray, below and centered with the image. This explicit owner preference overrides the original theme caption rules.

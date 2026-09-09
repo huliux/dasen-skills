@@ -81,7 +81,7 @@ skills:
     ownership: owned
     lifecycle: stable
     visibility: public-candidate
-    version: 7.1.0
+    version: 7.1.1
     packs:
     - content-wechat
     depends_on:

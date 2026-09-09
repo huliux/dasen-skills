@@ -42,7 +42,7 @@ value = 42
     assert "border" not in h2_style and "background" not in h2_style
     assert re.search(r'<img [^>]*style="[^"]*max-width:100%', rendered)
     assert re.search(r'<img [^>]*style="[^"]*border:0', rendered)
-    assert re.search(r'<figcaption style="[^"]*font-size:0.9em', rendered)
+    assert re.search(r'<figcaption style="[^"]*font-size:14px', rendered)
     assert re.search(r'<hr style="[^"]*border:1px inset #bfbfbf', rendered)
     assert rendered.count("data-dasen-code") == 1
     assert rendered.count('aria-label="close"') == 0

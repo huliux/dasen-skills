@@ -26,3 +26,5 @@ Implemented boundaries and scoped results are summarized in [local installation 
 The confirmed contract is implemented in spec §14: three native white themes, layout-2 evidence paths with legacy state preservation, bounded content roots, and Wiki-first research with original-source counting. See [scoped evidence](evidence/content-layout.md). Broader model editorial acceptance and real mobile/platform delivery remain outside this local change's evidence.
 
 The first simplified theme designs were superseded by the owner-selected Bear/Lark/Typo conversion. Renderer fidelity fixes and local acceptance are recorded in the scoped evidence above; cross-platform pixel equivalence is not claimed.
+
+Shared body-image caption styling is implemented for all three themes; explicit captions are grouped in figure/figcaption during formatting, without reclassifying ordinary paragraphs.

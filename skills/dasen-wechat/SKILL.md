@@ -3,7 +3,7 @@ name: dasen-wechat
 description: Render a sourced content package into safe WeChat HTML or deliver it to the draft box with a real receipt. Run only when routed by dasen-content or explicitly requested. Own formatting, image handling, preflight, and draft delivery; do not change arguments, generate images, or mass-publish.
 license: MIT
 metadata:
-  version: 7.1.0
+  version: 7.1.1
   invocation: router-or-explicit
   compatibility: Requires Python 3.10+, PyYAML, markdown-it-py and Pygments. Draft delivery additionally needs network access plus a complete credential pair in named environment variables or a project/device-configured Keychain locator.
 ---
