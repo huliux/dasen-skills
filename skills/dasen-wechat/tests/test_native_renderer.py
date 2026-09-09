@@ -36,18 +36,18 @@ value = 42
     rendered = render_markdown(markdown, theme(), "dasen-light")
     assert 'data-dasen-renderer="native-v1"' in rendered
     assert re.search(r'<p style="[^"]*line-height:1\.6', rendered)
-    assert re.search(r'<h2 style="[^"]*font-size:1\.602em', rendered)
-    assert re.search(r'<h2 style="[^"]*font-weight:600', rendered)
+    assert re.search(r'<h2 style="[^"]*font-size:1\.3em', rendered)
+    assert re.search(r'<h2 style="[^"]*font-weight:500', rendered)
     h2_style = re.search(r'<h2 style="([^"]*)"', rendered).group(1)
     assert "border" not in h2_style and "background" not in h2_style
     assert re.search(r'<img [^>]*style="[^"]*max-width:100%', rendered)
     assert re.search(r'<img [^>]*style="[^"]*border:0', rendered)
-    assert re.search(r'<figcaption style="[^"]*font-size:13px', rendered)
-    assert re.search(r'<hr style="[^"]*border-top:1px solid #e0e0e0', rendered)
+    assert re.search(r'<figcaption style="[^"]*font-size:0.9em', rendered)
+    assert re.search(r'<hr style="[^"]*border:1px inset #bfbfbf', rendered)
     assert rendered.count("data-dasen-code") == 1
-    assert rendered.count('aria-label="close"') == 1
-    assert rendered.count('aria-label="minimize"') == 1
-    assert rendered.count('aria-label="expand"') == 1
+    assert rendered.count('aria-label="close"') == 0
+    assert rendered.count('aria-label="minimize"') == 0
+    assert rendered.count('aria-label="expand"') == 0
     assert "value" in rendered and "42" in rendered
 
 

@@ -48,3 +48,5 @@
 采用 [MIT 许可证](LICENSE)；来源与外部组件见 [ORIGIN](ORIGIN.md) 和 [THIRD_PARTY](THIRD_PARTY.md)。
 
 新稿默认按内容包保存：正文与来源在 `writing/日期/主题/`，计划和回执在包内 `evidence/`，图片在内容根的 `assets/`。已有内容工作区保持原位；首次在源码仓创作默认放进 `content/`，也可指定内容根。旧包继续兼容，不自动搬迁。普通写作不要求 HTML 渲染或图片检查；排版可选三套白底简洁模板。研究默认查阅相关 Wiki，新材料入库按整批确认。
+
+三套排版现为用户选定的 MWeb Bear、Lark（蓝色强调）、Typo 的原生适配，保留来源样式参数；主题名称、兼容 ID 与差异见[主题说明](skills/dasen-wechat/themes/README.md)。

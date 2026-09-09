@@ -35,3 +35,7 @@ The removed implementation originated from [KKKKhazix/human-writing v1.1.0](http
 ## WeChat renderer research receipt
 
 The native WeChat pipeline was designed from the platform task and official API. During implementation, Wenyan CLI 2.0.11 (`414c921d5bd5280690e9529b5a8cb918af73f3ff`) and Wenyan core 3.0.11 (`12bd55e158779753a8668bc0d3c67a54c1969625`), both Apache-2.0, were inspected to compare the public high-level flow. Wenyan source, its theme files, registry and CSS applier are not distributed or executed here. The maintained implementation boundary and official API links live in `skills/dasen-wechat/references/implementation-research.md`.
+
+## Native theme adaptations
+
+The owner-selected Bear, Lark and Typo theme data now adapt supplied MWeb CSS/SCSS. Preserve their [attribution and licenses](skills/dasen-wechat/themes/NOTICE.md), including MWeb's declared ISC and Typo.css MIT notice. The root MIT license does not replace these notices. No external rendering engine is introduced.

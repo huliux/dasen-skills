@@ -70,3 +70,7 @@ The owner confirmed one content root: existing dedicated content workspaces reta
 Plain writing ends with prose, sources and writing/delivery evidence. Only requested visual or platform work creates Asset Check or renders HTML. Research reads relevant local Wiki evidence by default, preserves original source identity and freshness, then fills gaps. New reusable material is proposed as one batch for confirmation before ingestion; maintenance scans are outside content knowledge.
 
 Offer three white, simple native HTML themes, differentiated by reading density and document hierarchy. External themes inform design and require source/license review before any code reuse; no external renderer is introduced and project identity remains project-owned.
+
+### Theme fidelity correction (2026-09-09)
+
+The owner rejected the simplified native theme appearance and supplied MWeb Bear, Lark and Typo rules. Convert these selected styles through the native renderer, retaining their effective typography, spacing, colors and notices. Correct renderer properties that discard or override them; do not substitute another loosely inspired design.

@@ -1,21 +1,21 @@
-# Native white-background themes
+# Native MWeb theme adaptations
 
-| ID | Reading use | Body / line height |
-|---|---|---|
-| `dasen-default` | Clear everyday prose; existing baseline | 16px / 1.6 |
-| `dasen-reading` | Spacious continuous reading | 18px / 1.8 |
-| `dasen-document` | Compact technical explanations, lists and tables | 16px / 1.7 |
+The owner selected these three themes to replace the earlier simplified designs. All use the native renderer and white backgrounds. Source rules and license notices live in [NOTICE.md](NOTICE.md).
 
-All use the native renderer and `dasen-light` syntax palette. Select per article or channel; a new theme does not silently change a project default. Main backgrounds remain white, with restrained headings and no decorative shadows or background textures. Local visual checks cover the sample article at phone widths; a local preview does not establish WeChat phone acceptance.
+| Display name | Preferred selection | Existing ID retained | Key metrics |
+|---|---|---|---|
+| MWeb Bear | `mweb-bear` | `dasen-default` | 16px / 1.6; 500-weight headings; neutral text; blue links; white bordered code |
+| MWeb Lark (blue emphasis) | `mweb-lark` | `dasen-document` | 16px / 1.68; 26/22/20px headings; blue emphasis; 14px light-gray code |
+| MWeb Typo | `mweb-typo` | `dasen-reading` | 18.2px / 1.8; 100-weight headings; green links; 14px code |
 
-## Design references and provenance
+Existing IDs remain accepted so frozen article selections resolve. They now select the corrected styles; already exported HTML remains unchanged. New selections may use the preferred MWeb names. The public render command still accepts `--highlight dasen-light`; token colors come from the selected theme's native palette.
 
-These YAML definitions are independently authored changes to the existing original Dasen baseline, under the repository MIT license. No external CSS, font files, icons or renderer code is included.
+## Conversion boundary
 
-The design review on 2026-09-09 examined the general spacing, hierarchy and table behavior of:
+Resolve SCSS variables through their actual core selectors, rather than copying a palette alone. Inline the resulting typography, spacing, container, quote, table and code rules. Bear/Lark retain 25.6px vertical and 51.2px horizontal padding; their 736px source content limit becomes an 838.4px border-box limit. Typo resolves its 14px root and 1.3rem body to 18.2px, with 14px outer padding.
 
-- [MWeb Bear](https://github.com/imageslr/mweb-themes/blob/a755840a128657dd63bd7284cf9999f778510209/src/themes/core/mweb-bear.scss). Its package metadata declares ISC, but its multi-source theme library is not treated as a blanket license for all upstream code. MWeb's official theme directory links to the collection.
-- [Maple](https://github.com/xbmlz/hexo-theme-maple/blob/34669b318b21ac942377efba19f7df2b06b25cf1/LICENSE), licensed CC BY-NC-SA 4.0. General simplicity and whitespace informed the brief; its CSS is not copied or relicensed.
-- [Doocs default](https://github.com/doocs/md/blob/a9d3da04ccc3a06e347c47f1192f1f6689eee74f/packages/shared/src/configs/theme-css/default.css), whose repository uses WTFPL v2. Its colored heading blocks are outside this collection's white/simple brief.
+Safe static equivalents replace dynamic page styling: lists use semantic browser markers instead of pseudo-element counters; Typo uses its mobile quote margin at all widths; Lark's flat gradient divider becomes a solid line. Hover, interactive inputs, external fonts, page resets and script-driven charts are not imported. Fonts use the supplied stacks and available system fallbacks; no font download occurs. This is a documented native/platform conversion, not pixel identity across MWeb, browsers and WeChat.
 
-Repository stars and inclusion in an editor are adoption signals for a project, not a reliable popularity ranking of individual themes. No theme is advertised as the most popular.
+The renderer preserves border collapse/spacing and list properties, applies nested quote/list rules, and separates block-code styling from inline code. Theme code sizes and token colors are honored; toolbar decoration is opt-in. Keep scripts, unsafe URLs and CSS URL/expression rules filtered.
+
+Acceptance compares the same Markdown at mobile and desktop widths, verifies decoded images and actual table/code/heading styles, and retains a real local Asset Check. HTML validity alone is insufficient visual evidence. Phone rendering and remote draft receipts remain separate.

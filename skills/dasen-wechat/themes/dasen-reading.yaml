@@ -1,32 +1,50 @@
+# Adapted from the user-selected MWeb theme; see NOTICE.md for attribution and licenses.
 schema_version: 1
 id: dasen-reading
-description: 舒展长读：白底、较大正文与宽松段落，适合连续阅读。
-legacy_aliases: []
+description: MWeb Typo · supplied Typo.css and code palette
+legacy_aliases:
+- mweb-typo
 styles:
-  root: font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;font-size:18px;line-height:1.8;color:#292929;background-color:#ffffff;letter-spacing:0.025em;word-break:break-word;
-  p: margin:1.1em 0;line-height:1.8;
-  h1: margin:1.2em 0 0.6em;font-size:1.7em;line-height:1.25;font-weight:650;color:#222222;
-  h2: margin:1.8em 0 0.75em;font-size:23px;line-height:1.4;font-weight:650;color:#202020;
-  h3: margin:1.5em 0 0.6em;font-size:20px;line-height:1.45;font-weight:600;color:#303030;
-  h4: margin:1.1em 0 0.35em;font-size:1.1em;line-height:1.4;font-weight:650;color:#222222;
-  h5: margin:1em 0 0.35em;font-size:1em;line-height:1.4;font-weight:650;color:#222222;
-  h6: margin:1em 0 0.35em;font-size:1em;line-height:1.4;font-weight:650;color:#595959;
-  strong: font-weight:600;color:#222222;
-  em: font-style:italic;
-  a: 'color:#0069c2;text-decoration:none;border-bottom:1px solid #b8d8f0;word-break:break-all;'
-  img: display:block;max-width:100%;height:auto;margin:2em auto;border:0;border-radius:0;box-shadow:none;
-  ul: margin:1.1em 0;padding-left:1.4em;line-height:1.8;
-  ol: margin:1.1em 0;padding-left:1.4em;line-height:1.8;
-  li: margin:0.5em 0;line-height:1.8;
-  blockquote: 'margin:1.5em 0;padding:0.2em 1em;border-left:2px solid #c8c8c8;background-color:#ffffff;color:#666666;'
-  table: width:100%;max-width:100%;margin:1.4em auto;border-collapse:collapse;table-layout:fixed;font-size:14px;
-  th: 'padding:8px 9px;border:1px solid #d8d8d8;background-color:#f5f6f7;color:#222222;font-weight:650;line-height:1.5;text-align:left;vertical-align:top;word-break:break-word;'
-  td: 'padding:8px 9px;border:1px solid #d8d8d8;color:#222222;line-height:1.5;text-align:left;vertical-align:top;word-break:break-word;'
-  hr: 'margin:2.5em 0;border:0;border-top:1px solid #e5e5e5;height:0;'
-  code: font-family:SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;font-size:0.9em;background-color:#f3f4f6;color:#333333;border-radius:3px;padding:0.12em 0.3em;
-  pre: margin:1.5em 0;padding:1em;overflow-x:auto;background-color:#f7f7f8;color:#2f3337;line-height:1.65;white-space:pre;word-break:normal;
-  code_container: 'margin:1.5em 0;border:1px solid #e3e5e8;border-radius:6px;overflow:hidden;background-color:#f7f7f8;'
+  img: max-width:100%;height:auto;border:0;
+  figure: margin:0;padding:0;
+  figcaption: font-size:0.9em;color:#888888;
+  em: font-style:normal;font-weight:inherit;color:#000000;
+  ul: margin:0 0 1.2em 1.3em;padding:0;list-style-type:disc;
+  ol: margin:0 0 1.2em 1.9em;padding:0;list-style-type:decimal;
+  li: margin:0;padding:0;
+  nested_ul: margin:0 0 0.8em 2em;list-style-type:circle;
+  nested_ol: margin:0 0 0.8em 2em;
+  blockquote_p: margin:0;
   code_toolbar: display:none;
-  code_dot: display:none;
-  figure: margin:2em 0;text-align:center;
-  figcaption: margin-top:-1.2em;color:#888888;font-size:13px;line-height:1.5;text-align:center;
+  pre_code: font-family:inherit;font-size:inherit;line-height:inherit;tab-size:4;
+  sub: font-size:75%;vertical-align:sub;line-height:0;
+  sup: font-size:75%;vertical-align:super;line-height:0;
+  root: box-sizing:border-box;max-width:788px;min-width:200px;margin:0 auto;padding:14px;font-family:'PingFang SC','Lantinghei SC','Microsoft Yahei','Hiragino Sans GB','Microsoft Sans Serif','WenQuanYi Micro Hei',sans-serif;font-size:18.2px;font-weight:300;line-height:1.8;color:#333333;background-color:#ffffff;word-wrap:break-word;
+  p: margin:0 0 1.2em;line-height:1.8;
+  strong: font-weight:bold;color:#000000;
+  a: 'color:#1abc9c;border-bottom:1px solid #1abc9c;text-decoration:none;'
+  blockquote: 'margin:1em 0;padding:0 0 0 1em;border-left:1px solid #1abc9c;color:#999999;font-weight:400;'
+  code: font-family:Courier,'Courier New',monospace;font-weight:400;font-style:normal;
+  code_container: margin:0.5em 0;
+  pre: 'font-family:Consolas,Menlo,Monaco,monospace;font-size:14px;font-weight:400;line-height:1.375;white-space:pre;word-break:normal;margin:0;padding:1em;border:1px solid #dddddd;background-color:#fafbf9;color:#4299d7;overflow-x:auto;'
+  hr: 'border:0;border-bottom:1px solid #cfcfcf;margin:0 0 0.8em;height:10px;'
+  mark: 'background-color:#fffdd1;border-bottom:1px solid #ffedce;padding:2px;'
+  u: text-decoration:underline;
+  table: max-width:100%;margin:0 0 1.2em;border-collapse:collapse;border-spacing:0;
+  th: 'border:1px solid #dddddd;padding:0.5em 1em;color:#666666;background-color:#f1f1f1;font-weight:400;text-align:left;'
+  td: 'border:1px solid #dddddd;padding:0.5em 1em;color:#666666;'
+  h1: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:2em;font-weight:100;line-height:1.35;color:#000000;
+  h2: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:1.8em;font-weight:100;line-height:1.35;color:#000000;
+  h3: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:1.6em;font-weight:100;line-height:1.35;color:#000000;
+  h4: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:1.4em;font-weight:100;line-height:1.35;color:#000000;
+  h5: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:1.2em;font-weight:100;line-height:1.35;color:#000000;
+  h6: margin:1.2em 0 0.6em;font-family:'PingFang SC',Verdana,'Helvetica Neue','Microsoft Yahei',sans-serif;font-size:1.2em;font-weight:100;line-height:1.35;color:#000000;
+  syntax_keyword: color:#277fbe;
+  syntax_comment: color:#bdc3b7;
+  syntax_number: color:#1b6498;
+  syntax_string: color:#277fbe;
+  syntax_attribute: color:#66a329;
+  syntax_operator: color:#1b6498;
+  syntax_function: color:#66a329;
+  syntax_variable: color:#8dcefc;
+  syntax_tag: color:#1b6498;
